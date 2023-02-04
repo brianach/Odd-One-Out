@@ -24,6 +24,6 @@ function loadButtons (){
     for (let btn = 0 ; btn < 4 ; btn ++ ) {
         currentId = "b-".concat(btn + 1);
         myIcon = document.getElementById(currentId);
-        myIcon.setAttribute('id', `class = "${clouds[btn]}"`);
+        myIcon.setAttribute('class', `${clouds[btn]}`);
     }
 };
