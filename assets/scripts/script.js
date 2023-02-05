@@ -1,9 +1,11 @@
 // Wait for the DOM to finish loading before running the game
 // Get the button elements and add event listeners to them
 
-var oddOne = '' ;
+var oddOne = "" ; //* holds the odd one out array entry
 var currPuzz = 0 ; //*counter to check which puzzle from the puzzles array is currently active
 var scorePoint = 0 ;
+var puzzle = "" ;
+var currentId = "" ; //* id of the currently selected button 
 
 //* array to hold arrays of icons for of all ten puzzles
 const puzzles = [alpha = ['fas fa-a', 'fas fa-i', 'fas fa-u', 'fas fa-z'],
@@ -21,7 +23,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function(e) {
+            console.log(e.currentTarget.id); //* get the id of the object
+            currentId =  e.currentTarget.id ;
             if (this.getAttribute("data-type") === "play-button") {
                 playPuzz();
             } else {
@@ -31,41 +35,47 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-setPuzz(); //* load the first of the 10 puzzles
+setPuzzOne(); //* load the first of the 10 puzzles
 
-function setPuzz(){
+function setPuzzOne(){
 
-    puzzles.sort(() => Math.random() - 0.5) ; //* randomize piuzzle array so that the same ones dont load in the same order on a new gamne
+    //* intitialize the first puzzle
+    puzzles.sort(() => Math.random() - 0.5) ; //* randomize puzzle array so that the same ones dont load in the same order on a new gamne
     puzzle = puzzles[currPuzz] ; //* set the first puzzle variable
     oddOne = puzzle[3] ; //* copy the last entry of the individual puzzle array which is the odd one out into a control variable
-    puzzle.sort(() => Math.random() - 0.5) ; //* randomize the order of the buttons 
- 
-    for (let btn = 0 ; btn < 4 ; btn ++ ) { //* load an icon into each button from the puzzle array
-        currentId = "b-".concat(btn + 1); //* create a variabble to check for the current button id
-        myIcon = document.getElementById(currentId); //* get the button information of the current id
-        myIcon.setAttribute('class', `${puzzle[btn]} fa-5x`); //* assign the individual icon to the button
-        if ( oddOne === puzzle[btn] ) { //* check if the currently selected button matches the odd one out
-            myIcon.setAttribute('odd-flag', 1) //* set the off-flag attribute to 1 if the odd one out matches
-        } 
-     }
-    };
+    puzzle.sort(() => Math.random() - 0.5) ; //* randomize the order of the buttons before rendering
+    newPuzz() ; //* function to render puzzle icons
+    alert("");
+
+}
 
 function playPuzz (){
 
-    while (currPuzz < 11) { //* iterate through each puzzle in the puzzles array
-    myIcon = document.getElementById(currentId); //* get the button information of the current id
-    scoreFlag = myIcon.getAttribute('odd-flag'); //* if the odd one out is selected increment the score
-    if ( scoreFlag = 1 ) {
-        scorePoint ++ ;
+    if (currPuzz === 10) {
+        alert("Game Over");
+    } else {
+
+    myIcon = document.getElementById(currentId); 
+    scoreFlag = parseInt(myIcon.getAttribute('odd-flag')); //* if the odd one out is selected increment the score
+
+    if ( scoreFlag === 1 ) {
+        document.getElementById("scorebox").innerText = scorePoint ++ ;
     } else { //* if the odd one out is not seletect decrement the score
-        scorePoint -- ;
+        document.getElementById("scorebox").innerText = scorePoint -- ;
     }
 
-    currPuzz ++ ; //* increment the current puzzle flag so that the next one loads 
-
+    currPuzz ++ ; //* increment the current puzzle flag so that the next one loads after
+    
     puzzle = puzzles[currPuzz] ; //* set the first puzzle variable
     oddOne = puzzle[3] ;  //* copy the last entry of the individual puzzle array which is the odd one out into a control variable
     puzzle.sort(() => Math.random() - 0.5) ; //* randomize the order of the buttons 
+
+    newPuzz() ;
+    }
+
+}
+
+function newPuzz() {
 
     for (let btn = 0 ; btn < 4 ; btn ++ ) { //* load an icon into each button from the puzzle array
         currentId = "b-".concat(btn + 1); //* create a variabble to check for the current button id
@@ -74,6 +84,6 @@ function playPuzz (){
         if ( oddOne === puzzle[btn] ) { //* check if the currently selected button matches the odd one out
             myIcon.setAttribute('odd-flag', 1) //* set the off-flag attribute to 1 if the odd one out matches
         }
-    }}
-};
-
+        currentId = "" ; //* reinitialize current button id
+    }    
+}
