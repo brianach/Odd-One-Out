@@ -38,52 +38,47 @@ document.addEventListener("DOMContentLoaded", function() {
 setPuzzOne(); //* load the first of the 10 puzzles
 
 function setPuzzOne(){
-
     //* intitialize the first puzzle
     puzzles.sort(() => Math.random() - 0.5) ; //* randomize puzzle array so that the same ones dont load in the same order on a new gamne
     puzzle = puzzles[currPuzz] ; //* set the first puzzle variable
     oddOne = puzzle[3] ; //* copy the last entry of the individual puzzle array which is the odd one out into a control variable
     puzzle.sort(() => Math.random() - 0.5) ; //* randomize the order of the buttons before rendering
     newPuzz() ; //* function to render puzzle icons
-    alert("");
-
 }
 
 function playPuzz (){
-
-    if (currPuzz === 10) {
-        alert("Game Over");
-    } else {
-
     myIcon = document.getElementById(currentId); 
     scoreFlag = parseInt(myIcon.getAttribute('odd-flag')); //* if the odd one out is selected increment the score
-
     if ( scoreFlag === 1 ) {
-        document.getElementById("scorebox").innerText = scorePoint ++ ;
+        document.getElementById("scorebox").innerText = ++scorePoint ;
     } else { //* if the odd one out is not seletect decrement the score
-        document.getElementById("scorebox").innerText = scorePoint -- ;
+        document.getElementById("scorebox").innerText = --scorePoint ;
     }
-
     currPuzz ++ ; //* increment the current puzzle flag so that the next one loads after
-    
+    if (currPuzz === 10) {
+        setTimeout(nextLevel,3000);
+    } else {   
     puzzle = puzzles[currPuzz] ; //* set the first puzzle variable
     oddOne = puzzle[3] ;  //* copy the last entry of the individual puzzle array which is the odd one out into a control variable
     puzzle.sort(() => Math.random() - 0.5) ; //* randomize the order of the buttons 
-
     newPuzz() ;
     }
-
 }
 
 function newPuzz() {
-
     for (let btn = 0 ; btn < 4 ; btn ++ ) { //* load an icon into each button from the puzzle array
         currentId = "b-".concat(btn + 1); //* create a variabble to check for the current button id
         myIcon = document.getElementById(currentId); //* get the button information of the current id
         myIcon.setAttribute('class', `${puzzle[btn]} fa-5x`); //* assign the individual icon to the button
         if ( oddOne === puzzle[btn] ) { //* check if the currently selected button matches the odd one out
-            myIcon.setAttribute('odd-flag', 1) //* set the off-flag attribute to 1 if the odd one out matches
+            myIcon.setAttribute('odd-flag', 1) //* set the odd-flag attribute to 1 if the odd one out matches
+        } else {
+            myIcon.setAttribute('odd-flag', 0) //* if the wrong button is clicked then set the odd-flag to 0
         }
         currentId = "" ; //* reinitialize current button id
     }    
 }
+
+function nextLevel() {
+       alert("Game Over");
+}     
