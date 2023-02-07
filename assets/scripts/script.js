@@ -49,14 +49,10 @@ function setPuzzOne(){
 function playPuzz (){
     myIcon = document.getElementById(currentId); 
     scoreFlag = parseInt(myIcon.getAttribute('odd-flag')); //* if the odd one out is selected increment the score
-    if ( scoreFlag === 1 ) {
-        document.getElementById("scorebox").innerText = ++scorePoint ;
-    } else { //* if the odd one out is not seletect decrement the score
-        document.getElementById("scorebox").innerText = --scorePoint ;
-    }
-    currPuzz ++ ; //* increment the current puzzle flag so that the next one loads after
-    if (currPuzz === 10) {
-        setTimeout(nextLevel,3000);
+    scoreCalc(scoreFlag);
+    currPuzz ++ ; //* increment the current puzzle flag so that the next puzzle loads afterwards
+    if (currPuzz >= 10) {
+        setTimeout(scoreCalc, 1000);
     } else {   
     puzzle = puzzles[currPuzz] ; //* set the first puzzle variable
     oddOne = puzzle[3] ;  //* copy the last entry of the individual puzzle array which is the odd one out into a control variable
@@ -79,6 +75,21 @@ function newPuzz() {
     }    
 }
 
-function nextLevel() {
-       alert("Game Over");
+function scoreCalc(){
+    if ( scoreFlag === 1 ) {
+        document.getElementById("scorebox").innerText = ++scorePoint ;
+    } else { //* if the odd one out is not seletect decrement the score
+        document.getElementById("scorebox").innerText = --scorePoint ;
+    }
+    if (scorePoint >= 10) {
+        sayMessage = "Well Done. You've made it to round 2 !";
+        nextLevel(sayMessage);
+    } else if (currPuzz >= 10) {
+        sayMessage = "Hard luck. Restart to try again !";
+        nextLevel(sayMessage);
+    }
+}
+
+function nextLevel(sayMessage) {
+       alert(sayMessage);
 }     

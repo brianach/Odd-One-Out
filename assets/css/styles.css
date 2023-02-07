@@ -26,3 +26,10 @@ h1 {
     height: 100px;
 
 }
+
+.score-area {
+    padding-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
