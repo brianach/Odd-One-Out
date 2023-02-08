@@ -7,6 +7,7 @@ var scorePoint = 0 ;
 var puzzle = "" ;
 var currentId = "" ; //* id of the currently selected button 
 
+
 //* array to hold arrays of icons for of all ten puzzles
 const puzzles = [alpha = ['fas fa-a', 'fas fa-i', 'fas fa-u', 'fas fa-z'],
     animals = ['fas fa-cat', 'fas fa-dog', 'fas fa-horse', 'fas fa-fish'], 
@@ -22,17 +23,17 @@ const puzzles = [alpha = ['fas fa-a', 'fas fa-i', 'fas fa-u', 'fas fa-z'],
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
 
-    for (let button of buttons) {
-        button.addEventListener("click", function(e) {
-            console.log(e.currentTarget.id); //* get the id of the object
-            currentId =  e.currentTarget.id ;
-            if (this.getAttribute("data-type") === "play-button") {
-                playPuzz();
-            } else {
-                alert(`Something went wrong!`);
-            }
-        });
-    }
+        for (let button of buttons) {
+            button.addEventListener("click", function(e) {
+                console.log(e.currentTarget.id); //* get the id of the object
+                currentId =  e.currentTarget.id ;
+                if (this.getAttribute("data-type") === "play-button") {
+                    playLevel();
+                } else {
+                    alert(`Something went wrong!`);
+                }
+            });
+        }    
 });
 
 setPuzzOne(); //* load the first of the 10 puzzles
@@ -46,7 +47,13 @@ function setPuzzOne(){
     newPuzz() ; //* function to render puzzle icons
 }
 
-function playPuzz (){
+
+function playLevel() {
+    playPuzz();
+}
+
+function playPuzz (){ //*play the currently presented puzzle
+
     myIcon = document.getElementById(currentId); 
     scoreFlag = parseInt(myIcon.getAttribute('odd-flag')); //* if the odd one out is selected increment the score
     scoreCalc(scoreFlag);
