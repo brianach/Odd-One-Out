@@ -59,7 +59,7 @@ function playPuzz (){ //*play the currently presented puzzle
     scoreCalc(scoreFlag);
     currPuzz ++ ; //* increment the current puzzle flag so that the next puzzle loads afterwards
     if (currPuzz >= 10) {
-        setTimeout(scoreCalc, 1000);
+        scoreCalc();
     } else {   
     puzzle = puzzles[currPuzz] ; //* set the first puzzle variable
     oddOne = puzzle[3] ;  //* copy the last entry of the individual puzzle array which is the odd one out into a control variable
