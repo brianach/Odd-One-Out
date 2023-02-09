@@ -37,6 +37,7 @@ document.getElementById("levelbox").innerText = 0 ;
 setPuzzOne();                                                 
 
 function setPuzzOne(){                                          //* randomize the order of the puzzles and load the first puzzle array
+  
     altpuzzles.push(...puzzles);                                //* clone the puzzles array to preserve original
     altpuzzles.sort(() => Math.random() - 0.5) ;                //* randomize puzzles
     puzzle = altpuzzles[currPuzz] ;                             //* set the first puzzle 
@@ -75,7 +76,7 @@ function playPuzz (){                                           //*play the curr
     if ( currPuzz >= 9 && scorePoint >= 10 ) {
         scoreCalc(); 
     } else { 
-    puzzle = puzzles[currPuzz] ;                                //* set the puzzle to the current puzzle array value
+    puzzle = altpuzzles[currPuzz] ;                             //* set the puzzle to the current puzzle array value
     oddOne = puzzle[3] ;                                        //* copy the last entry of the current puzzle array which is the odd one out into a variable
     puzzle.sort(() => Math.random() - 0.5) ;                    //* randomize the order of the buttons so that the odd one isn't always in the same location
     newPuzz() ;                                                 //* call the function that renders the puzzle array buttons
@@ -97,12 +98,13 @@ function scoreCalc(){
         gameLevel++ ;
         sayMessage = `Well Done. You've made it to round ${gameLevel} !`;
         nextLevel(sayMessage);
-        currPuzz = scorePoint = 0 ;                                          //* reset the puzzles array and score
+        currPuzz = scorePoint = 0 ;                              //* reset the puzzles array and score
         setPuzzOne();
     }
 }
 
 function nextLevel(sayMessage) {
     document.getElementById("levelbox").innerText = gameLevel ;
+    altpuzzles.length = 0 ;                                     //* clear the array for each new level
     alert(sayMessage);
 }     
