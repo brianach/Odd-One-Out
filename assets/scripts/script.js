@@ -21,6 +21,7 @@ const puzzles = [alpha = ['fas fa-a', 'fas fa-i', 'fas fa-u', 'fas fa-z'],
     motor = ['fas fa-car-side', 'fas fa-truck', 'fas fa-truck-pickup', 'fas fa-motorcycle'], 
     tools = ['fas fa-hammer', 'fas fa-wrench', 'fas fa-trowel', 'fas fa-pencil']]; 
 const altpuzzles = [] ;
+const altpuzzle = [] ;
 
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
@@ -40,9 +41,10 @@ function setPuzzOne(){                                          //* randomize th
   
     altpuzzles.push(...puzzles);                                //* clone the puzzles array to preserve original
     altpuzzles.sort(() => Math.random() - 0.5) ;                //* randomize puzzles
-    puzzle = altpuzzles[currPuzz] ;                             //* set the first puzzle 
-    oddOne = puzzle[3] ;                                        //* copy the last entry of the puzzle array which is the odd one out
-    puzzle.sort(() => Math.random() - 0.5) ;                    //* randomize the order of the buttons before rendering
+    puzzle = altpuzzles[currPuzz] ;
+    altpuzzle.push(...puzzle);                                  //* set the first puzzle while preserving original 
+    oddOne = altpuzzle[3] ;                                        //* copy the last entry of the puzzle array which is the odd one out
+    altpuzzle.sort(() => Math.random() - 0.5) ;                    //* randomize the order of the buttons before rendering
     newPuzz() ;                                                 //* function to render puzzle icons
 }
 
@@ -50,14 +52,15 @@ function newPuzz() {                                            //* render the i
     for (let btn = 0 ; btn < 4 ; ++ btn ) {                     //* load an icon into each button from the puzzle array
         currentId = "b-".concat(btn + 1);                       //* load variable with the current button id
         myIcon = document.getElementById(currentId);            //* get the button information of the current id
-        myIcon.setAttribute('class', `${puzzle[btn]} fa-5x`);   //* assign the icon from the current puzzle array location to the button
-        if ( oddOne === puzzle[btn] ) {                         //* check if the currently selected button matches the odd one out
+        myIcon.setAttribute('class', `${altpuzzle[btn]} fa-5x`);   //* assign the icon from the current puzzle array location to the button
+        if ( oddOne === altpuzzle[btn] ) {                         //* check if the currently selected button matches the odd one out
             myIcon.setAttribute('odd-flag', 1)                  //* set the odd-flag attribute to 1 if the odd one out matches
         } else {
             myIcon.setAttribute('odd-flag', 0)                  //* if the wrong button is clicked then set the odd-flag to 0
-        }
-        currentId = "" ;                                        //* reinitialize current button id for the next puzzle
+        }                                      
     }    
+    currentId = "" ;                                            //* reinitialize current button id for the next puzzle
+    altpuzzle.length = 0 ;                                       //* reinitialize current array for the next puzzle
 }
 
 function playLevel() {                                          //* play the current level
@@ -76,9 +79,10 @@ function playPuzz (){                                           //*play the curr
     if ( currPuzz >= 9 && scorePoint >= 10 ) {
         scoreCalc(); 
     } else { 
-    puzzle = altpuzzles[currPuzz] ;                             //* set the puzzle to the current puzzle array value
-    oddOne = puzzle[3] ;                                        //* copy the last entry of the current puzzle array which is the odd one out into a variable
-    puzzle.sort(() => Math.random() - 0.5) ;                    //* randomize the order of the buttons so that the odd one isn't always in the same location
+    puzzle = altpuzzles[currPuzz] ;                          //* set the puzzle to the current puzzle array value while preserving original
+    altpuzzle.push(...puzzle);   
+    oddOne = altpuzzle[3] ;                                        //* copy the last entry of the current puzzle array which is the odd one out into a variable
+    altpuzzle.sort(() => Math.random() - 0.5) ;                    //* randomize the order of the buttons so that the odd one isn't always in the same location
     newPuzz() ;                                                 //* call the function that renders the puzzle array buttons
     }
 }
