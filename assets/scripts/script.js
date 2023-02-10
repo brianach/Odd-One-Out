@@ -94,13 +94,15 @@ function scoreCalc(){
     if ( currPuzz >= 10 && scorePoint < 10 ) {
         alert("Hard luck. Restart to try again !");
 
-        var winSound = new sound("/assets/snd/foghorn.mp4");                //* party trumpet sound
+        var winSound = new playSound("/assets/snd/foghorn.mp4");                //* party trumpet sound
         winSound.play();
+
+        setTimeout(reStart, 2000);
 
     } else if ( currPuzz >= 9 && scorePoint >= 10 ) {
         gameRound++ ;
 
-        var winSound = new sound("/assets/snd/partypop.mp4");                //* party trumpet sound
+        var winSound = new playSound("/assets/snd/partypop.mp4");                //* party trumpet sound
         winSound.play();
 
         setTimeout(nextRound, 2000); //* wait 5 seconds to enjoy win before nmext round
@@ -116,7 +118,7 @@ function nextRound() {                                 //* clear the array for e
     setPuzzOne();
 }     
 
-function sound(src) {
+function playSound(src) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
     this.sound.setAttribute("preload", "auto");
@@ -129,4 +131,8 @@ function sound(src) {
     this.stop = function(){
         this.sound.pause();
     }    
+}
+
+function reStart () {
+    location.reload()
 }
