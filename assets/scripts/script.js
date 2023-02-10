@@ -6,8 +6,8 @@ var currPuzz = 0 ;                                              //*counter to ch
 var scorePoint = 0 ;
 var puzzle = "" ;
 var currentId = "" ;                                            //* id of the currently selected button 
-var gameLevel = 0 ;                                             //* set initial value for level
-var nxtLvlFlag = 0 ;                                            //* flag for level change
+var gameRound = 0 ;                                             //* set initial value for round
+var nxtLvlFlag = 0 ;                                            //* flag for round change
 
 //* array to hold arrays of icons for of all ten puzzles
 const puzzles = [alpha = ['fas fa-a', 'fas fa-i', 'fas fa-u', 'fas fa-z'],
@@ -29,12 +29,12 @@ document.addEventListener("DOMContentLoaded", function() {
             button.addEventListener("click", function(e) {
                 console.log(e.currentTarget.id);                //* get the id of the object
                 currentId =  e.currentTarget.id ;
-                    playLevel();
+                    playRound();
             });
         }    
 });
 
-document.getElementById("levelbox").innerText = 0 ;
+document.getElementById("roundbox").innerText = 0 ;
 setPuzzOne();                                                 
 
 function setPuzzOne(){                                          //* randomize the order of the puzzles and load the first puzzle array
@@ -63,8 +63,7 @@ function newPuzz() {                                            //* render the i
     altpuzzle.length = 0 ;                                       //* reinitialize current array for the next puzzle
 }
 
-function playLevel() {                                          //* play the current level
-    document.getElementById("scorebox").innerText = 0 ;         
+function playRound() {                                          //* play the current round         
     playPuzz() ;
 }
 
@@ -74,17 +73,13 @@ function playPuzz (){                                           //*play the curr
     scoreFlag = parseInt(document.getElementById(currentId).getAttribute('odd-flag'));          //* get the flag value of the clicked button (0 or 1) 
     scoreCalc(scoreFlag);                                       //* send the result to the score calculation function
 
-    ++ currPuzz ;                                               //* increment the puzzle count so that the next puzzle loads after score calculation
-
-    if ( currPuzz >= 9 && scorePoint >= 10 ) {
-        scoreCalc(); 
-    } else { 
     puzzle = altpuzzles[currPuzz] ;                          //* set the puzzle to the current puzzle array value while preserving original
     altpuzzle.push(...puzzle);   
     oddOne = altpuzzle[3] ;                                        //* copy the last entry of the current puzzle array which is the odd one out into a variable
     altpuzzle.sort(() => Math.random() - 0.5) ;                    //* randomize the order of the buttons so that the odd one isn't always in the same location
     newPuzz() ;                                                 //* call the function that renders the puzzle array buttons
-    }
+
+    ++ currPuzz ;                                               //* increment the puzzle count so that the next puzzle loads after score calculation
 }
 
 function scoreCalc(){
@@ -96,19 +91,20 @@ function scoreCalc(){
     } 
 
     if ( currPuzz >= 10 && scorePoint < 10 ) {
-        sayMessage = "Hard luck. Restart to try again !";
-        nextLevel(sayMessage);
+        alert("Hard luck. Restart to try again !");
+        nextRound(sayMessage);
     } else if ( currPuzz >= 9 && scorePoint >= 10 ) {
-        gameLevel++ ;
-        sayMessage = `Well Done. You've made it to round ${gameLevel} !`;
-        nextLevel(sayMessage);
-        currPuzz = scorePoint = 0 ;                              //* reset the puzzles array and score
-        setPuzzOne();
+        gameRound++ ;
+        alert(`Well Done. You've made it to round ${gameRound} !`);
+        setTimeout(nextRound, 5000); //* wait 5 seconds to enjoy win before nmext round
     }
 }
 
-function nextLevel(sayMessage) {
-    document.getElementById("levelbox").innerText = gameLevel ;
-    altpuzzles.length = 0 ;                                     //* clear the array for each new level
-    alert(sayMessage);
+function nextRound() {                                 //* clear the array for each new round
+
+    currPuzz = scorePoint = 0 ;                              //* reset the puzzles array and score
+    document.getElementById("roundbox").innerText = gameRound ;
+    document.getElementById("scorebox").innerText = 0 ;
+    altpuzzles.length = 0 ;    
+    setPuzzOne();
 }     
