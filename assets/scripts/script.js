@@ -104,14 +104,14 @@ function scoreCalc() {
   if (currPuzz >= 10 && scorePoint < 10) {
     alert("Hard luck. Restart to try again !");
 
-    var winSound = new playSound("/assets/snd/foghorn.mp3"); //* party trumpet sound
+    var winSound = new playSound("assets/snd/foghorn.mp3"); //* party trumpet sound
     winSound.play();
 
     setTimeout(reStart, 2000);
   } else if (currPuzz >= 10 && scorePoint >= 10) {
     gameRound++;
 
-    var winSound = new playSound("/assets/snd/partypop.mp3"); //* party trumpet sound
+    var winSound = new playSound("assets/snd/partypop.mp3"); //* party trumpet sound
     winSound.play();
 
     setTimeout(nextRound, 2000); //* wait 5 seconds to enjoy win before nmext round
