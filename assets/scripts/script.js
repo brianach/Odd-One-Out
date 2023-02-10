@@ -85,6 +85,8 @@ function playPuzz() {
   ); //* get the flag value of the clicked button (0 or 1)
   scoreCalc(scoreFlag); //* send the result to the score calculation function
 
+  if (currPuzz === 10 ) { return false; }
+
   puzzle = altpuzzles[currPuzz]; //* set the puzzle to the current puzzle array value while preserving original
   altpuzzle.push(...puzzle);
   oddOne = altpuzzle[3]; //* copy the last entry of the current puzzle array which is the odd one out into a variable
@@ -109,7 +111,7 @@ function scoreCalc() {
     winSound.play();
 
     setTimeout(reStart, 2000);
-  } else if (currPuzz >= 9 && scorePoint >= 10) {
+  } else if (currPuzz >= 10 && scorePoint >= 10) {
     gameRound++;
 
     var winSound = new playSound("/assets/snd/partypop.mp4"); //* party trumpet sound
