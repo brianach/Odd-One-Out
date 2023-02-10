@@ -46,7 +46,8 @@ function setPuzzOne(){                                          //* randomize th
     altpuzzle.push(...puzzle);                                  //* set the first puzzle while preserving original 
     oddOne = altpuzzle[3] ;                                        //* copy the last entry of the puzzle array which is the odd one out
     altpuzzle.sort(() => Math.random() - 0.5) ;                    //* randomize the order of the buttons before rendering
-    newPuzz() ;                                                 //* function to render puzzle icons
+    currPuzz ++ ;                                                //* increment in order to load new puzzle after intial load
+    newPuzz() ;                                      //* function to render puzzle icons
 }
 
 function newPuzz() {                                            //* render the icons for the current puzzle
@@ -109,13 +110,13 @@ function scoreCalc(){
     }
 }
 
-function nextRound() {                                 //* clear the array for each new round
+function nextRound() {                                
 
-    currPuzz = scorePoint = 0 ;                              //* reset the puzzles array and score
-    document.getElementById("roundbox").innerText = gameRound ;
-    document.getElementById("scorebox").innerText = 0 ;
-    altpuzzles.length = 0 ;    
-    setPuzzOne();
+    currPuzz = scorePoint = 0 ;                                             //* reset the puzzle count to 0
+    document.getElementById("roundbox").innerText = gameRound ;             //* increment the round 
+    document.getElementById("scorebox").innerText = scorePoint ;            //* reset score to 0 for next round
+    altpuzzles.length = 0 ;                                                 //* reset nested array for new round
+    setPuzzOne();                                                           //* call the first puzzle function 
 }     
 
 function playSound(src) {
