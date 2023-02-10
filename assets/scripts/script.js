@@ -8,6 +8,7 @@ var puzzle = "" ;
 var currentId = "" ;                                            //* id of the currently selected button 
 var gameRound = 0 ;                                             //* set initial value for round
 var nxtLvlFlag = 0 ;                                            //* flag for round change
+var winSound;
 
 //* array to hold arrays of icons for of all ten puzzles
 const puzzles = [alpha = ['fas fa-a', 'fas fa-i', 'fas fa-u', 'fas fa-z'],
@@ -92,10 +93,17 @@ function scoreCalc(){
 
     if ( currPuzz >= 10 && scorePoint < 10 ) {
         alert("Hard luck. Restart to try again !");
+
+        var winSound = new sound("/assets/snd/foghorn.mp4");                //* party trumpet sound
+        winSound.play();
+
     } else if ( currPuzz >= 9 && scorePoint >= 10 ) {
         gameRound++ ;
-        alert(`Well Done. You've made it to round ${gameRound} !`);
-        setTimeout(nextRound, 5000); //* wait 5 seconds to enjoy win before nmext round
+
+        var winSound = new sound("/assets/snd/partypop.mp4");                //* party trumpet sound
+        winSound.play();
+
+        setTimeout(nextRound, 2000); //* wait 5 seconds to enjoy win before nmext round
     }
 }
 
@@ -107,3 +115,18 @@ function nextRound() {                                 //* clear the array for e
     altpuzzles.length = 0 ;    
     setPuzzOne();
 }     
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
+}
