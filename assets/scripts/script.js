@@ -9,6 +9,7 @@ var currentId = ""; //* id of the currently selected button
 var gameRound = 0; //* set initial value for round
 var nxtLvlFlag = 0; //* flag for round change
 var winSound;
+var roundTime = 10000 ; //* initial time allowed for the current round
 
 //* array to hold arrays of icons for of all ten puzzles
 const puzzles = [
@@ -71,22 +72,18 @@ function newPuzz() {
   altpuzzle.length = 0; //* reinitialize current array for the next puzzle
 }
 
-function playRound() {
-  //* play the current round
+function playRound() { //* play the current round
   playPuzz();
 }
 
-function playPuzz() {
-  //*play the currently presented puzzle
+function playPuzz() {   //*play the currently presented puzzle
 
-  //*var buttonTimer = setTimeout("alert('Oh noes! you didnt click the button :(');", 5000);
   scoreFlag = parseInt(
     document.getElementById(currentId).getAttribute("odd-flag")
   ); //* get the flag value of the clicked button (0 or 1)
   scoreCalc(scoreFlag); //* send the result to the score calculation function
 
-  if (currPuzz === 10 ) { return false; }
-
+  if (currPuzz === 10 ) { return false}
   puzzle = altpuzzles[currPuzz]; //* set the puzzle to the current puzzle array value while preserving original
   altpuzzle.push(...puzzle);
   oddOne = altpuzzle[3]; //* copy the last entry of the current puzzle array which is the odd one out into a variable
@@ -107,14 +104,14 @@ function scoreCalc() {
   if (currPuzz >= 10 && scorePoint < 10) {
     alert("Hard luck. Restart to try again !");
 
-    var winSound = new playSound("/assets/snd/foghorn.mp4"); //* party trumpet sound
+    var winSound = new playSound("/assets/snd/foghorn.mp3"); //* party trumpet sound
     winSound.play();
 
     setTimeout(reStart, 2000);
   } else if (currPuzz >= 10 && scorePoint >= 10) {
     gameRound++;
 
-    var winSound = new playSound("/assets/snd/partypop.mp4"); //* party trumpet sound
+    var winSound = new playSound("/assets/snd/partypop.mp3"); //* party trumpet sound
     winSound.play();
 
     setTimeout(nextRound, 2000); //* wait 5 seconds to enjoy win before nmext round
