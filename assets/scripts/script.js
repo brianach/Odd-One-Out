@@ -92,7 +92,6 @@ function scoreCalc(){
 
     if ( currPuzz >= 10 && scorePoint < 10 ) {
         alert("Hard luck. Restart to try again !");
-        nextRound(sayMessage);
     } else if ( currPuzz >= 9 && scorePoint >= 10 ) {
         gameRound++ ;
         alert(`Well Done. You've made it to round ${gameRound} !`);
