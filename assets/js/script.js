@@ -27,7 +27,14 @@ const puzzles = [
 const altpuzzles = [];
 const altpuzzle = [];
 
-document.addEventListener("DOMContentLoaded", function () {
+document.querySelectorAll('button').forEach(occurence => {
+  let currentId = occurence.getAttribute('id');
+  occurence.addEventListener('click', function() {
+    playPuzz(currentId);
+  } );
+});
+
+/**document.addEventListener("DOMContentLoaded", function () {
   let buttons = document.getElementsByTagName("button");
   for (let button of buttons) {
     button.addEventListener("click", function (e) {
@@ -36,7 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
       playRound();
     });
   }
-});
+});*/
+
+
 
 document.getElementById("roundbox").innerText = 0;
 setPuzzOne();
@@ -72,11 +81,11 @@ function newPuzz() {
   altpuzzle.length = 0; //* reinitialize current array for the next puzzle
 }
 
-function playRound() { //* play the current round
-  playPuzz();
+function playRound(currentId) { //* play the current round
+  playPuzz(currentId);
 }
 
-function playPuzz() {   //*play the currently presented puzzle
+function playPuzz(currentId) {   //*play the currently presented puzzle
 
   scoreFlag = parseInt(
     document.getElementById(currentId).getAttribute("odd-flag")
