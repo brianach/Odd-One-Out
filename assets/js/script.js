@@ -9,7 +9,13 @@ var currentId = ""; //* id of the currently selected button
 var gameRound = 0; //* set initial value for round
 var nxtLvlFlag = 0; //* flag for round change
 var winSound;
-var roundTime = 10000 ; //* initial time allowed for the current round
+//* var roundTime = 10000 ; //* initial time allowed for the current round
+
+const gameButtons = document.querySelectorAll(".game-button");
+const resultContainer = document.querySelector('#result');
+var timerLength = 10000;
+let timerIsLive = true;
+let gameTimeout = null;
 
 //* array to hold arrays of icons for of all ten puzzles
 const puzzles = [
@@ -27,14 +33,52 @@ const puzzles = [
 const altpuzzles = [];
 const altpuzzle = [];
 
-document.querySelectorAll('button').forEach(occurence => {
+function refreshTimer(buttonText) {
+  //  determine message depending on game state
+  if (timerIsLive) {
+    resultContainer.innerText = `${buttonText}`;
+  } else {
+    resultContainer.innerText = 'Waiting...';
+  }
+
+  playPuzz(buttonText);
+
+  //  clear the current timeout to prevent multiples
+  clearTimeout(gameTimeout);
+  //  refresh the timeout
+  timerIsLive = true;
+  gameTimeout = setTimeout(stopGame, timerLength);
+  //  just to prevent start button refreshing timer
+  //startButton.removeEventListener('click', refreshTimer);
+}
+
+function stopGame() {
+  resultContainer.innerText = 'Game over';
+  timerIsLive = false;
+  clearTimeout(gameTimeout);
+  //  add the start button listener again
+  //startButton.addEventListener('click', refreshTimer);
+}
+
+function buttonClickHandler(event) {
+  if (timerIsLive) {
+    const clickedButtonText = event.currentTarget.id ; //event.currentTarget.textContent;
+    refreshTimer(clickedButtonText);
+  } else {
+    resultContainer.innerText = 'Game not started yet...';
+  }
+}
+
+gameButtons.forEach(button => button.addEventListener("click", buttonClickHandler));
+
+/** document.querySelectorAll('button').forEach(occurence => {
   let currentId = occurence.getAttribute('id');
   occurence.addEventListener('click', function() {
     playPuzz(currentId);
   } );
 });
 
-/** Code below replaced
+Code below replaced
  * 
  * document.addEventListener("DOMContentLoaded", function () {
   let buttons = document.getElementsByTagName("button");
