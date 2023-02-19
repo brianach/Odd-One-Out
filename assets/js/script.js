@@ -69,6 +69,13 @@ function buttonClickHandler(event) {
   }
 }
 
+document.querySelector("#uname-in").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+      displayName();
+  }
+});
+
+
 gameButtons.forEach(button => button.addEventListener("click", buttonClickHandler));
 
 /** document.querySelectorAll('button').forEach(occurence => {

@@ -38,3 +38,31 @@ function buttonClickHandler(event) {
 }
 
 gameButtons.forEach(button => button.addEventListener("click", buttonClickHandler));
+
+
+
+//* hide game play area section while username input is in progress
+let playArea = document.querySelector(".play-screen");
+playArea.style.display = "none";
+
+// Will get the username, place it on the board and show next section.
+enterNameBtn.addEventListener("click", showUser);
+
+function showUser() {
+
+  let username = document.getElementById("uname-inp").value;
+  document.getElementById("displayUname").innerHTML = `<h2>${username}</h2>`;
+  if (username.trim() == "") {
+      msgName.textContent = `I just have to know your username so we can play !`;
+      msgName.style.color = "#F6A38E";
+      setTimeout(eraseName, 3000);
+  } else {
+      let pickCharacter = document.querySelector("#character-area");
+      pickCharacter.style.display = "flex";
+  }
+
+  function eraseName() {
+      msgName.style.color = "white";
+  }
+}
+
