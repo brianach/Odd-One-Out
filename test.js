@@ -66,3 +66,22 @@ function showUser() {
   }
 }
 
+/** document.querySelectorAll('button').forEach(occurence => {
+  let currentId = occurence.getAttribute('id');
+  occurence.addEventListener('click', function() {
+    playPuzz(currentId);
+  } );
+});
+
+Code below replaced
+ * 
+ * document.addEventListener("DOMContentLoaded", function () {
+  let buttons = document.getElementsByTagName("button");
+  for (let button of buttons) {
+    button.addEventListener("click", function (e) {
+      console.log(e.currentTarget.id); //* get the id of the object
+      currentId = e.currentTarget.id;
+      playRound();
+    });
+  }
+});*/

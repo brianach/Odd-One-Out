@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset = "UTF-8" >
-    <meta http-equiv = "X-UA-Compatible" content = "IE=edge" >
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0" >
-    <link rel = "stylesheet" href = "assets/css/styles.css" >
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="assets/css/styles.css">
 
-    <script src="https://kit.fontawesome.com/559cadc1ae.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/559cadc1ae.js" crossorigin="anonymous"></script>
 
-    <title>Odd One Out</title>
+	<title>Odd One Out</title>
 
-    
 </head>
+
 <body>
-    <div class="username-input">
-        <h1>Odd One Out</h1>
-        <h2> Welcome to the greatest quiz show on this web ! </h2>
-        <h2> Please enter your a username to continue ! </h2>
-
-        <div class="grid-area">
-            <div class="q-image"> <img src="assets/img/quiz.png">
-            </div>
-            <div class="uname-entry">
-            <input type="text" name="username" id="uname-in" placeholder="My supercool username is...">
-            </div>
-            <div>
-            <button class="btn" id="submit-uname">Quiz me!</button>
-            </div>
-        </div>
-    </div>
 
 
-    </div>
+	<div class="play-screen">
+		<h1>Odd One Out</h1>
 
-    <div class="play-screen" >
-        <h1>Odd One Out</h1>
-
-        <div class = "game-area" >
-            <div class = "controls-area" >
-                <button class="game-button" odd-flag = "0" id = "b-1" data-type = "play-button" class = "btn btn-size">
-                </button>
-                <button class="game-button" odd-flag = "0" id = "b-2" data-type = "play-button" class = "btn btn-size">
-                </button>
-                <button class="game-button" odd-flag = "0" id = "b-3" data-type = "play-button" class = "btn btn-size">
-                </button>
-                <button class="game-button" odd-flag = "0" id = "b-4" data-type = "play-button" class = "btn btn-size">
-                </button>
-            </div>
+        <div class="username-input">
+            <h2> Welcome to this fantastic quiz ! </h2>
+            <h3> Type your username below then click the lightbulb to play. </h3>
+                <div class="uname-entry">
+                    <input type="text" name="username" id="uname-in" placeholder="My supercool username is...">
+                </div>
+                <div class="quiz-button">
+                </div>
+                <h1 id="response"></h1>
+                </div>
         </div>
 
-        <p id="result"></p>
-        
-        <div class = "score-area" >
-            <p class = "scores" > <h2> Round <span id = "roundbox" > </span> Score <span id = "scorebox" >0</span></h2></p>
-        </div>
+		<div class="game-area">
+			<div class="controls-area">
+				<button class="game-button" odd-flag="0" id="b-1" data-type="play-button" class="btn btn-size">
+				</button>
+				<button class="game-button" odd-flag="0" id="b-2" data-type="play-button" class="btn btn-size">
+				</button>
+				<button class="game-button" odd-flag="0" id="b-3" data-type="play-button" class="btn btn-size">
+				</button>
+				<button class="game-button" odd-flag="0" id="b-4" data-type="play-button" class="btn btn-size">
+				</button>
+			</div>
 
-    </div>
+            
+		<p id="result"></p>
 
-    <script src="assets/js/script.js"></script>
+		<div class="score-area">
+			<p class="scores">
+			<h2> Round <span id="roundbox"> </span> Score <span id="scorebox">0</span></h2>
+			</p>
+		</div>
+		</div>
+
+
+	</div>
+
+	<script src="assets/js/script.js"></script>
 </body>
+
 </html>

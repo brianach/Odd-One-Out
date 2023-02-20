@@ -5,6 +5,7 @@ var oddOne = ""; //* holds the odd one out array entry
 var currPuzz = 0; //*counter to check which puzzle from the puzzles array is currently active
 var scorePoint = 0;
 var puzzle = "";
+var userName = "";
 var currentId = ""; //* id of the currently selected button
 var gameRound = 0; //* set initial value for round
 var nxtLvlFlag = 0; //* flag for round change
@@ -16,6 +17,7 @@ const resultContainer = document.querySelector('#result');
 var timerLength = 10000;
 let timerIsLive = true;
 let gameTimeout = null;
+let quizPlay = document.querySelector(".username-input");
 
 //* array to hold arrays of icons for of all ten puzzles
 const puzzles = [
@@ -69,36 +71,52 @@ function buttonClickHandler(event) {
   }
 }
 
+
+//* Get username before main game
+
+//* hide game play area section while username input is in progress
+let playArea = document.querySelector(".game-area");
+playArea.style.display = "none";
+
+
 document.querySelector("#uname-in").addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-      displayName();
+      getUser();
   }
 });
 
+function getUser() {
+
+  let userName = document.getElementById("uname-in").value;
+  document.getElementById("response").innerText = userName;
+
+  if (userName.trim() == "") {
+    response.textContent = `You have to type in a username to play !`;
+    response.style.color = "#F6A38E";
+      setTimeout(clearName, 3000);
+  } 
+  function clearName() {
+    response.style.color = "white";
+  }
+}
+
+//* Main game section
+
+quizPlay.addEventListener("click", clearUserInp);
+
+
+function clearUserInp() {
+  let playArea = document.querySelector(".username-input");
+  playArea.style.display = "none";
+  playTheGame() ;
+}
+
+function playTheGame() {
+    let playArea = document.querySelector(".game-area");
+    playArea.style.display = "block";
+}
 
 gameButtons.forEach(button => button.addEventListener("click", buttonClickHandler));
-
-/** document.querySelectorAll('button').forEach(occurence => {
-  let currentId = occurence.getAttribute('id');
-  occurence.addEventListener('click', function() {
-    playPuzz(currentId);
-  } );
-});
-
-Code below replaced
- * 
- * document.addEventListener("DOMContentLoaded", function () {
-  let buttons = document.getElementsByTagName("button");
-  for (let button of buttons) {
-    button.addEventListener("click", function (e) {
-      console.log(e.currentTarget.id); //* get the id of the object
-      currentId = e.currentTarget.id;
-      playRound();
-    });
-  }
-});*/
-
-
 
 document.getElementById("roundbox").innerText = 0;
 setPuzzOne();
