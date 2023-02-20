@@ -26,7 +26,6 @@ h1 {
 }
 
 .game-area {
-	display: flex;
 	justify-self: center;
 	justify-content: center;
 	width: 80%;
@@ -50,6 +49,5 @@ h1 {
 
 .score-area {
 	padding-top: 25px;
-	display: flex;
 	justify-content: center;
 }

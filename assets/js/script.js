@@ -46,6 +46,8 @@ document.querySelector("#uname-in").addEventListener("keydown", function (event)
 //* hide game play area section while username input is in progress
 let playArea = document.querySelector(".game-area");
 playArea.style.display = "none";
+let scoreArea = document.querySelector(".score-area");
+scoreArea.style.display = "none" ;
 document.getElementsByTagName("h3")[0].innerText = "Type your username below then press enter."; 
 
 function getUser() {
@@ -76,7 +78,9 @@ function clearUserInp() {
 
 function playTheGame() {
     let playArea = document.querySelector(".game-area");
-    playArea.style.display = "block";
+    playArea.style.display = "flex";
+    let scoreArea = document.querySelector(".score-area");
+scoreArea.style.display = "flex" ;
 }
 
 gameButtons.forEach(button => button.addEventListener("click", buttonClickHandler));
