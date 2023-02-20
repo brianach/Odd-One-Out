@@ -52,7 +52,7 @@ document.getElementsByTagName("h3")[0].innerText = "Type your username below the
 
 function getUser() {
 
-  let userName = document.getElementById("uname-in").value;
+  userName = document.getElementById("uname-in").value;
 
   if (userName.trim() == "") {
     response.textContent = `You have to type in a username to play !`;
@@ -81,6 +81,7 @@ function playTheGame() {
     playArea.style.display = "flex";
     let scoreArea = document.querySelector(".score-area");
 scoreArea.style.display = "flex" ;
+
 }
 
 gameButtons.forEach(button => button.addEventListener("click", buttonClickHandler));
