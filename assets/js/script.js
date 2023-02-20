@@ -35,49 +35,7 @@ const puzzles = [
 const altpuzzles = [];
 const altpuzzle = [];
 
-function refreshTimer(buttonText) {
-  //  determine message depending on game state
-  if (timerIsLive) {
-    resultContainer.innerText = `${buttonText}`;
-  } else {
-    resultContainer.innerText = 'Waiting...';
-  }
-
-  playPuzz(buttonText);
-
-  //  clear the current timeout to prevent multiples
-  clearTimeout(gameTimeout);
-  //  refresh the timeout
-  timerIsLive = true;
-  gameTimeout = setTimeout(stopGame, timerLength);
-  //  just to prevent start button refreshing timer
-  //startButton.removeEventListener('click', refreshTimer);
-}
-
-function stopGame() {
-  resultContainer.innerText = 'Game over';
-  timerIsLive = false;
-  clearTimeout(gameTimeout);
-  //  add the start button listener again
-  //startButton.addEventListener('click', refreshTimer);
-}
-
-function buttonClickHandler(event) {
-  if (timerIsLive) {
-    const clickedButtonText = event.currentTarget.id ; //event.currentTarget.textContent;
-    refreshTimer(clickedButtonText);
-  } else {
-    resultContainer.innerText = 'Game not started yet...';
-  }
-}
-
-
 //* Get username before main game
-
-//* hide game play area section while username input is in progress
-let playArea = document.querySelector(".game-area");
-playArea.style.display = "none";
-
 
 document.querySelector("#uname-in").addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
@@ -85,24 +43,29 @@ document.querySelector("#uname-in").addEventListener("keydown", function (event)
   }
 });
 
+//* hide game play area section while username input is in progress
+let playArea = document.querySelector(".game-area");
+playArea.style.display = "none";
+document.getElementsByTagName("h3")[0].innerText = "Type your username below then press enter."; 
+
 function getUser() {
 
   let userName = document.getElementById("uname-in").value;
-  document.getElementById("response").innerText = userName;
 
   if (userName.trim() == "") {
     response.textContent = `You have to type in a username to play !`;
     response.style.color = "#F6A38E";
       setTimeout(clearName, 3000);
-  } 
+  } else {
+    document.getElementsByTagName("h3")[0].innerText = `Hi ${userName}, click the lightbulb to play`;
+    quizPlay.addEventListener("click", clearUserInp);
+  }
   function clearName() {
     response.style.color = "white";
   }
 }
 
 //* Main game section
-
-quizPlay.addEventListener("click", clearUserInp);
 
 
 function clearUserInp() {
@@ -223,4 +186,40 @@ function playSound(src) {
 
 function reStart() {
   location.reload();
+}
+
+function refreshTimer(buttonText) {
+  //  determine message depending on game state
+  if (timerIsLive) {
+    resultContainer.innerText = `${buttonText}`;
+  } else {
+    resultContainer.innerText = 'Waiting...';
+  }
+
+  playPuzz(buttonText);
+
+  //  clear the current timeout to prevent multiples
+  clearTimeout(gameTimeout);
+  //  refresh the timeout
+  timerIsLive = true;
+  gameTimeout = setTimeout(stopGame, timerLength);
+  //  just to prevent start button refreshing timer
+  //startButton.removeEventListener('click', refreshTimer);
+}
+
+function stopGame() {
+  resultContainer.innerText = 'Game over';
+  timerIsLive = false;
+  clearTimeout(gameTimeout);
+  //  add the start button listener again
+  //startButton.addEventListener('click', refreshTimer);
+}
+
+function buttonClickHandler(event) {
+  if (timerIsLive) {
+    const clickedButtonText = event.currentTarget.id ; //event.currentTarget.textContent;
+    refreshTimer(clickedButtonText);
+  } else {
+    resultContainer.innerText = 'Game not started yet...';
+  }
 }

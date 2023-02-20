@@ -40,7 +40,6 @@ function buttonClickHandler(event) {
 gameButtons.forEach(button => button.addEventListener("click", buttonClickHandler));
 
 
-
 //* hide game play area section while username input is in progress
 let playArea = document.querySelector(".play-screen");
 playArea.style.display = "none";
@@ -85,3 +84,4 @@ Code below replaced
     });
   }
 });*/
+quizPlay.addEventListener("click", clearUserInp);
