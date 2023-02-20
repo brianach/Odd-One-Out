@@ -9,7 +9,7 @@ var currentId = ""; //* id of the currently selected button
 var gameRound = 0; //* set initial value for round
 var nxtLvlFlag = 0; //* flag for round change
 var winSound = "";
-var timerLength = 10000;
+var timerLength = 1000;
 let timerIsLive = true;
 let gameTimeout = null;
 let quizPlay = document.querySelector(".username-input");
@@ -77,7 +77,7 @@ function clearUserInp() {
 
 function playTheGame() {
 	let playArea = document.querySelector(".game-area");
-	playArea.style.display = "grid";
+	playArea.style.display = "flex";
 	let scoreArea = document.querySelector(".score-area");
 	scoreArea.style.display = "flex";
 
@@ -201,12 +201,14 @@ function reStart() {
 }
 
 function refreshTimer(buttonText) {
+
 	playPuzz(buttonText);
 	//  clear the current timeout to prevent multiples
 	clearTimeout(gameTimeout);
 	//  refresh the timeout
 	timerIsLive = true;
 	gameTimeout = setTimeout(stopGame, timerLength);
+
 }
 
 function stopGame() {
@@ -222,3 +224,8 @@ function buttonClickHandler(event) {
 		refreshTimer(clickedButtonText);
 	}
 }
+
+
+
+
+
