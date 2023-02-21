@@ -32,12 +32,23 @@ const puzzles = [
 const altpuzzles = []; //* temporary puzzles array
 const altpuzzle = []; //* temporary puzzle
 
-//* Get username
+//* progress bar and timer variables
+var countDownBar = document.getElementsByClassName("game-button");
+var countdown, sec;
+var toggle = true;
+var elem = document.getElementById("my-prog-bar");
+var i = 0;
+var width = 1;
+sec = 60;
+
+getUname();
+
+function getUname(){//* Get username
 document
 	.querySelector("#uname-in")
 	.addEventListener("keydown", function (event) {
 		if (event.key === "Enter") {
-			getUser();
+			respondUser();
 		}
 	});
 
@@ -49,7 +60,9 @@ scoreArea.style.display = "none";
 document.getElementsByTagName("h3")[0].innerText =
 	"Type your username below then press enter.";
 
-function getUser() {
+}
+
+function respondUser() { //* feedback for username input section
 	userName = document.getElementById("uname-in").value;
 
 	if (userName.trim() == "") {
@@ -72,28 +85,33 @@ function getUser() {
 function clearUserInp() { //* hide game play for user input section
 	let playArea = document.querySelector(".username-input");
 	playArea.style.display = "none";
-	playTheGame();
+	revealGameArea();
 }
 
-function playTheGame() { //* reveal the game area after user input section
+function revealGameArea() { //* reveal the game area after user input section
 	let playArea = document.querySelector(".game-area");
 	playArea.style.display = "flex";
 	let scoreArea = document.querySelector(".score-area");
 	scoreArea.style.display = "flex";
-
+	startTimer(); //*set up the first instance of the timer
 }
 
-gameButtons.forEach((button) =>
+gameButtons.forEach((button) => //* listen for mouse clicks in the main game area
 	button.addEventListener("click", buttonClickHandler)
-
 );
 
-document.getElementById("roundbox").innerText = 0;
+
+function buttonClickHandler(event) { //* button click logic decision code
+	if (timerIsLive) {
+		const clickedButtonText = event.currentTarget.id; //event.currentTarget.textContent;
+		refreshTimer(clickedButtonText); //* set the level timer
+	}
+}
+
+document.getElementById("roundbox").innerText = 0; //* set up the first quiz
 setPuzzOne();
 
-function setPuzzOne() {
-	//* randomize the order of the puzzles and load the first puzzle array
-
+function setPuzzOne() { //* randomize the order of the puzzles and load the first puzzle array
 	altpuzzles.push(...puzzles); //* clone the puzzles array to preserve original
 	altpuzzles.sort(() => Math.random() - 0.5); //* randomize puzzles
 	puzzle = altpuzzles[currPuzz];
@@ -104,8 +122,7 @@ function setPuzzOne() {
 	newPuzz(); //* function to render puzzle icons
 }
 
-function newPuzz() {
-	//* render the icons for the current puzzle
+function newPuzz() { //* render the icons for the current puzzle
 	for (let btn = 0; btn < 4; ++btn) {
 		//* load an icon into each button from the puzzle array
 		currentId = "b-".concat(btn + 1); //* load variable with the current button id
@@ -122,10 +139,10 @@ function newPuzz() {
 	altpuzzle.length = 0; //* reinitialize current array for the next puzzle
 }
 
-function playRound(currentId) {
+/**function playRound(currentId) {
 	//* play the current round
 	playPuzz(currentId);
-}
+}*/
 
 function playPuzz(currentId) {
 	//*play the currently presented puzzle
@@ -173,7 +190,6 @@ function scoreCalc() {
 }
 
 function nextRound() {
-
 	currPuzz = scorePoint = 0; //* reset the puzzle count to 0
 	document.getElementById("roundbox").innerText = gameRound; //* increment the round
 	document.getElementById("scorebox").innerText = scorePoint; //* reset score to 0 for next round
@@ -196,36 +212,49 @@ function playSound(src) {
 	};
 }
 
-function reStart() {
-	location.reload();
+function refreshTimer(buttonText) { //* start the countdown progress bar
+		switch(toggle){
+			case true: //* will run if the toggle value is true after the timer was reset or at the start
+				startTimer();
+				break;
+			case false:
+				resetTimer(); //* will run if the tiggle value is fase ie after resert button is clicked
+				break;
+		}
+	playPuzz(buttonText);	
 }
 
-function refreshTimer(buttonText) {
-
-	playPuzz(buttonText);
-	//  clear the current timeout to prevent multiples
-	clearTimeout(gameTimeout);
-	//  refresh the timeout
-	timerIsLive = true;
-	gameTimeout = setTimeout(stopGame, timerLength);
-
-}
-
-function stopGame() {
+function stopGame() { //* game over alert
 
 	resultContainer.innerText = "Hard Luck. You're out of time. Try again !";
 	timerIsLive = false;
 	clearTimeout(gameTimeout);
 }
 
-function buttonClickHandler(event) {
-	if (timerIsLive) {
-		const clickedButtonText = event.currentTarget.id; //event.currentTarget.textContent;
-		refreshTimer(clickedButtonText);
-	}
+//* progress timer code functions
+
+function startTimer() {
+	sec = 59;
+	countdown = setInterval(currentTime, 100);
+	toggle = false; //* set to false once timer starts so will trigger reset if button is clicked
 }
 
+function resetTimer(){
+	clearInterval(countdown);
+	toggle = true; //* reset the toggle after resetting the countdown
+  width = 1;
+	elem.style.width = width;
+  startTimer();
+}
 
+function currentTime() {
+	if (sec === 0){alert(`${sec}'s left`);}
+	sec--;  //* the sec variable holds the quiz timer value and alerts if less than 0
+	  
+	width++;
+	elem.style.width = width + "%"; //* draws the progress bar on the page   
+}
 
-
-
+function reStart() { //* this loads the entire game from scratch
+	location.reload();
+}

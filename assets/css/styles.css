@@ -44,7 +44,7 @@ h1 {
 	flex-flow: column;
 	align-items: center;
 }
-.btn-size {
+.game-button {
 	border-radius: 50%;
 	border-width: inherit;
 	border-color: white;
@@ -73,7 +73,7 @@ h1 {
 	background-color: green;
   }
 
-.my-prog-bar  {
+#my-prog-bar  {
 	width: 1%;
 	height: 30px;
 	background-color: #ddd;
