@@ -2,66 +2,61 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/styles.css">
 
-	<script src="https://kit.fontawesome.com/559cadc1ae.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/559cadc1ae.js" crossorigin="anonymous"></script>
 
-	<title>Odd One Out</title>
+  <title>Odd One Out</title>
 
 </head>
 
 <body>
 
+  <div class="play-screen">
+    <h1>Odd One Out</h1>
 
-	<div class="play-screen">
-		<h1>Odd One Out</h1>
+    <div class="username-input">
+      <h2> Welcome to this fantastic quiz ! </h2>
+      <h3></h3>
+      <div class="uname-entry">
+        <input type="text" name="username" id="uname-in" placeholder="My supercool username is...">
+      </div>
+      <div class="quiz-button">
+      </div>
+      <h1 id="response"></h1>
+    </div>
+  </div>
 
-        <div class="username-input">
-            <h2> Welcome to this fantastic quiz ! </h2>
-            <h3></h3>
-                <div class="uname-entry">
-                    <input type="text" name="username" id="uname-in" placeholder="My supercool username is...">
-                </div>
-                <div class="quiz-button">
-                </div>
-                <h1 id="response"></h1>
-                </div>
-        </div>
+  <div class="game-area">
+    <div class="controls-area">
+      <button class="game-button" odd-flag="0" id="b-1" data-type="play-button">
+      </button>
+      <button class="game-button" odd-flag="0" id="b-2" data-type="play-button">
+      </button>
+      <button class="game-button" odd-flag="0" id="b-3" data-type="play-button">
+      </button>
+      <button class="game-button" odd-flag="0" id="b-4" data-type="play-button">
+      </button>
+    </div>
+    <div class="prog-container">
+      <div class="my-progress">
+        <div id="my-prog-bar"></div>
+      </div>
+    </div>
+  </div>
 
-		<div class="game-area">
-			<div class="controls-area">
-				<button class="game-button" odd-flag="0" id="b-1" data-type="play-button">
-				</button>
-				<button class="game-button" odd-flag="0" id="b-2" data-type="play-button">
-				</button>
-				<button class="game-button" odd-flag="0" id="b-3" data-type="play-button">
-				</button>
-				<button class="game-button" odd-flag="0" id="b-4" data-type="play-button">
-				</button>
-			</div>
-			<div class="prog-container">
-				<div class="my-progress">
-					<div id="my-prog-bar"></div>
-				</div>
-			</div>
-		</div>
+  <p id="result"></p>
 
-		<p id="result"></p>
+  <div class="score-area">
+    <p class="scores">
+    <h2> Round <span id="roundbox"> </span> Score <span id="scorebox">0</span></h2>
+    </p>
+  </div>
 
-
-
-		<div class="score-area">
-			<p class="scores">
-			<h2> Round <span id="roundbox"> </span> Score <span id="scorebox">0</span></h2>
-			</p>
-		</div>
-
-	</div>
-
-	<script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js"></script>
 </body>
 
 </html>
