@@ -9,7 +9,7 @@ var currentId = ""; //* id of the currently selected button
 var gameRound = 0; //* set initial value for round
 var nxtLvlFlag = 0; //* flag for round change
 var winSound = "";
-var timerLength = 1000;
+var timerLength = 10000;
 let timerIsLive = true;
 let gameTimeout = null;
 let quizPlay = document.querySelector(".username-input");
@@ -69,13 +69,13 @@ function getUser() {
 
 //* Main game section
 
-function clearUserInp() {
+function clearUserInp() { //* hide game play for user input section
 	let playArea = document.querySelector(".username-input");
 	playArea.style.display = "none";
 	playTheGame();
 }
 
-function playTheGame() {
+function playTheGame() { //* reveal the game area after user input section
 	let playArea = document.querySelector(".game-area");
 	playArea.style.display = "flex";
 	let scoreArea = document.querySelector(".score-area");
