@@ -226,7 +226,7 @@ function refreshTimer(buttonText) {
 function stopGame() {
   //* game over alert
 
-  resultContainer.innerText = "Hard Luck. You're out of time. Try again !";
+  resultContainer.innerText = `You ran out of time ${userName}. Try again !`;
   clearTimeout(gameTimeout);
 }
 
