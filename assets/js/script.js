@@ -6,10 +6,7 @@ var puzzle = "";
 var userName = "";
 var currentId = ""; //* id of the currently selected button
 var gameRound = 0; //* set initial value for round
-var nxtLvlFlag = 0; //* flag for round change
 var winSound = "";
-var timerLength = 10000;
-let timerIsLive = true;
 let gameTimeout = null;
 let quizPlay = document.querySelector(".username-input");
 const gameButtons = document.querySelectorAll(".game-button");
@@ -32,7 +29,7 @@ const altpuzzles = []; //* temporary puzzles array
 const altpuzzle = []; //* temporary puzzle
 
 //* progress bar and timer variables
-var countDownBar = document.getElementsByClassName("game-button");
+//var countDownBar = document.getElementsByClassName("game-button");
 var countdown, sec;
 var toggle = true;
 var elem = document.getElementById("my-prog-bar");
@@ -104,10 +101,8 @@ gameButtons.forEach((
 
 function buttonClickHandler(event) {
   //* button click logic decision code
-  if (timerIsLive) {
     const clickedButtonText = event.currentTarget.id; //event.currentTarget.textContent;
     refreshTimer(clickedButtonText); //* set the level timer
-  }
 }
 
 document.getElementById("roundbox").innerText = 0; //* set up the first quiz
@@ -233,7 +228,6 @@ function stopGame() {
   //* game over alert
 
   resultContainer.innerText = "Hard Luck. You're out of time. Try again !";
-  timerIsLive = false;
   clearTimeout(gameTimeout);
 }
 
