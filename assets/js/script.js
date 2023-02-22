@@ -182,6 +182,9 @@ function scoreCalc() {
 }
 
 function nextRound() {
+  if ( gameRound >= 10 ) {
+    alert(`WooHoo! You've won the game ${userName} !`); 
+  }
   currPuzz = scorePoint = 0; //* reset the puzzle count to 0
   document.getElementById("roundbox").innerText = gameRound; //* increment the round
   document.getElementById("scorebox").innerText = scorePoint; //* reset score to 0 for next round
