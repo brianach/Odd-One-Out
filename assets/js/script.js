@@ -33,7 +33,8 @@ var toggle = true;
 var elem = document.getElementById("my-prog-bar");
 var i = 0;
 var width = 0.0;
-sec = 60; //* set initial time to 60 seconds
+var progtime = 0.0; //* progress bar increment variable
+var roundtime = 110; //* set initial time to allow for 10 rounds of play
 
 getUname();
 
@@ -170,7 +171,8 @@ function scoreCalc() {
     setTimeout(reStart, 5000);
     
   } else if (currPuzz >= 10 && scorePoint >= 10) {
-    gameRound++;
+    gameRound ++ ;
+    roundtime = roundtime - 10 ;
 
     winSound = new playSound("assets/snd/partypop.mp3"); //* party trumpet sound
     winSound.play();
@@ -223,8 +225,9 @@ function stopGame() {
 
 //* progress timer code functions
 
-function startTimer() {
-  sec = 59;
+function startTimer(progTime) {
+  sec = roundtime ;
+  progtime = 100 / sec;
   countdown = setInterval(currentTime, 100);
   toggle = false; //* set to false once timer starts so will trigger reset if button is clicked
 }
@@ -244,7 +247,7 @@ function currentTime() {
   }
   sec--; //* the sec variable holds the quiz timer value and alerts if less than 0
 
-  width = width + 1.66; //* match progress percentage to seconds (100/60)
+  width = width + progtime; //* match progress percentage reminaing seconds (100/sec)
   elem.style.width = width + "%"; //* draws the progress bar on the page
 }
 
