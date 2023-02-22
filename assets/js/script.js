@@ -32,7 +32,7 @@ var countdown, sec;
 var toggle = true;
 var elem = document.getElementById("my-prog-bar");
 var i = 0;
-var width = 1;
+var width = 0.0;
 sec = 60; //* set initial time to 60 seconds
 
 getUname();
@@ -244,7 +244,7 @@ function currentTime() {
   }
   sec--; //* the sec variable holds the quiz timer value and alerts if less than 0
 
-  width++;
+  width = width + 1.66; //* match progress percentage to seconds (100/60)
   elem.style.width = width + "%"; //* draws the progress bar on the page
 }
 
