@@ -172,8 +172,7 @@ function scoreCalc() {
   }
 
   if (currPuzz >= 10 && scorePoint < 10) {
-    resultContainer.innerText = "Hard luck. Try again !";
-
+    resultContainer.innerText = `Hard luck ${userName}. Try again !`;
     winSound = new playSound("assets/snd/foghorn.mp3"); //* party trumpet sound
     winSound.play();
 
