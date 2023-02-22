@@ -5,9 +5,8 @@ var scorePoint = 0;
 var puzzle = "";
 var userName = "";
 var currentId = ""; //* id of the currently selected button
-var gameRound = 0; //* set initial value for round
+var gameRound = 1; //* set initial value for round
 var winSound = "";
-let gameTimeout = null;
 let quizPlay = document.querySelector(".username-input");
 const gameButtons = document.querySelectorAll(".game-button");
 const resultContainer = document.querySelector("#result");
@@ -29,18 +28,16 @@ const altpuzzles = []; //* temporary puzzles array
 const altpuzzle = []; //* temporary puzzle
 
 //* progress bar and timer variables
-//var countDownBar = document.getElementsByClassName("game-button");
 var countdown, sec;
 var toggle = true;
 var elem = document.getElementById("my-prog-bar");
 var i = 0;
 var width = 1;
-sec = 60;
+sec = 60; //* set initial time to 60 seconds
 
 getUname();
 
-function getUname() {
-  //* Get username
+function getUname() {//* get the username from the player and wait for enter
   document
     .querySelector("#uname-in")
     .addEventListener("keydown", function (event) {
@@ -54,22 +51,20 @@ function getUname() {
   playArea.style.display = "none";
   let scoreArea = document.querySelector(".score-area");
   scoreArea.style.display = "none";
-  document.getElementsByTagName("h3")[0].innerText =
-    "Type your username below then press enter.";
+  //* prompt for username
+  document.getElementsByTagName("h3")[0].innerText = "Type your username below then press enter.";
 }
 
 function respondUser() {
   //* feedback for username input section
   userName = document.getElementById("uname-in").value;
 
-  if (userName.trim() == "") {
+  if (userName.trim() == "") { //* warn player that they have not entered a username
     response.textContent = `You have to type in a username to play !`;
-    response.style.color = "#F6A38E";
+    response.style.color = "red";
     setTimeout(clearName, 3000);
-  } else {
-    document.getElementsByTagName(
-      "h3"
-    )[0].innerText = `Hi ${userName}, click the lightbulb to play`;
+  } else { //* respond to the player once they entered their username
+    document.getElementsByTagName( "h3" )[0].innerText = `Hi ${userName}, click the lightbulb to play`;
     quizPlay.addEventListener("click", clearUserInp);
   }
   function clearName() {
@@ -105,7 +100,6 @@ function buttonClickHandler(event) {
     refreshTimer(clickedButtonText); //* set the level timer
 }
 
-document.getElementById("roundbox").innerText = 0; //* set up the first quiz
 setPuzzOne();
 
 function setPuzzOne() {
@@ -138,11 +132,6 @@ function newPuzz() {
   altpuzzle.length = 0; //* reinitialize current array for the next puzzle
 }
 
-/**function playRound(currentId) {
-	//* play the current round
-	playPuzz(currentId);
-}*/
-
 function playPuzz(currentId) {
   //*play the currently presented puzzle
 
@@ -172,11 +161,14 @@ function scoreCalc() {
   }
 
   if (currPuzz >= 10 && scorePoint < 10) {
+    clearInterval(countdown);
+
     resultContainer.innerText = `Hard luck ${userName}. Try again !`;
     winSound = new playSound("assets/snd/foghorn.mp3"); //* party trumpet sound
     winSound.play();
 
-    setTimeout(reStart, 2000);
+    setTimeout(reStart, 5000);
+    
   } else if (currPuzz >= 10 && scorePoint >= 10) {
     gameRound++;
 
@@ -225,9 +217,8 @@ function refreshTimer(buttonText) {
 
 function stopGame() {
   //* game over alert
-
   resultContainer.innerText = `You ran out of time ${userName}. Try again !`;
-  clearTimeout(gameTimeout);
+  reStart();
 }
 
 //* progress timer code functions
@@ -248,7 +239,8 @@ function resetTimer() {
 
 function currentTime() {
   if (sec === 0) {
-    alert(`${sec}'s left`);
+    clearInterval(countdown);
+    stopGame();
   }
   sec--; //* the sec variable holds the quiz timer value and alerts if less than 0
 
@@ -258,5 +250,5 @@ function currentTime() {
 
 function reStart() {
   //* this loads the entire game from scratch
-  location.reload();
+  location.reload()
 }
