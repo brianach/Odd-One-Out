@@ -165,6 +165,7 @@ function scoreCalc() {
     clearInterval(countdown);
 
     resultContainer.innerText = `Hard luck ${userName}. Try again !`;
+
     winSound = new playSound("assets/snd/foghorn.mp3"); //* party trumpet sound
     winSound.play();
 
@@ -182,8 +183,8 @@ function scoreCalc() {
 }
 
 function nextRound() {
-  if ( gameRound >= 10 ) {
-    alert(`WooHoo! You've won the game ${userName} !`); 
+  if ( gameRound >= 2 ) {
+    wonGame(); 
   }
   currPuzz = scorePoint = 0; //* reset the puzzle count to 0
   document.getElementById("roundbox").innerText = gameRound; //* increment the round
@@ -257,4 +258,20 @@ function currentTime() {
 function reStart() {
   //* this loads the entire game from scratch
   location.reload()
+}
+
+function wonGame(){
+  //* hide game area and set title 
+  clearInterval(countdown);
+
+  let playArea = document.querySelector(".game-area");
+  playArea.style.display = "none";
+  let scoreArea = document.querySelector(".score-area");
+  scoreArea.style.display = "none";
+
+  pageTitle = document.getElementsByTagName("h1")[0].innerText = `WooHoo!! ${userName} wins the game !!` ;
+  document.body.style.paddingTop = "20%" ; //* allow for all screens
+
+  setTimeout(reStart, 5000);
+
 }
