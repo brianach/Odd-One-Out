@@ -88,19 +88,19 @@ function revealGameArea() {
   playArea.style.display = "flex";
   let scoreArea = document.querySelector(".score-area");
   scoreArea.style.display = "flex";
+  //* start the game
+  setPuzzOne();
 }
 
 gameButtons.forEach((
   button //* listen for mouse clicks in the main game area
-) => button.addEventListener("click", buttonClickHandler));
+) => button.addEventListener("click", buttonClickHandler));  
 
 function buttonClickHandler(event) {
   //* button click logic decision code
   const clickedButtonText = event.currentTarget.id; //event.currentTarget.textContent;
   refreshTimer(clickedButtonText); //* set the level timer
 }
-
-setPuzzOne();
 
 function setPuzzOne() {
   //* randomize the order of the puzzles and load the first puzzle array
