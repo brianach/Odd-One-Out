@@ -30,7 +30,7 @@ const altpuzzle = []; //* temporary puzzle
 //* progress bar and timer variables
 var countdown, sec;
 var toggle = true;
-var elem = document.getElementById("my-prog-bar");
+var progBar = document.getElementById("my-prog-bar");
 var i = 0;
 var width = 0.0;
 var progtime = 0.0; //* progress bar increment variable
@@ -88,7 +88,6 @@ function revealGameArea() {
   playArea.style.display = "flex";
   let scoreArea = document.querySelector(".score-area");
   scoreArea.style.display = "flex";
-  startTimer(); //*set up the first instance of the timer
 }
 
 gameButtons.forEach((
@@ -97,8 +96,8 @@ gameButtons.forEach((
 
 function buttonClickHandler(event) {
   //* button click logic decision code
-    const clickedButtonText = event.currentTarget.id; //event.currentTarget.textContent;
-    refreshTimer(clickedButtonText); //* set the level timer
+  const clickedButtonText = event.currentTarget.id; //event.currentTarget.textContent;
+  refreshTimer(clickedButtonText); //* set the level timer
 }
 
 setPuzzOne();
@@ -112,6 +111,7 @@ function setPuzzOne() {
   oddOne = altpuzzle[3]; //* copy the last entry of the puzzle array which is the odd one out
   altpuzzle.sort(() => Math.random() - 0.5); //* randomize the order of the buttons before rendering
   currPuzz++; //* increment in order to load new puzzle after intial load
+  startTimer(); //*set up the first instance of the timer
   newPuzz(); //* function to render puzzle icons
 }
 
@@ -160,25 +160,20 @@ function scoreCalc() {
     //* if the odd one out is not seletect decrement the score
     document.getElementById("scorebox").innerText = --scorePoint;
   }
-
   if (currPuzz >= 10 && scorePoint < 10) {
     clearInterval(countdown);
-
     resultContainer.innerText = `Hard luck ${userName}. Try again !`;
-
-    winSound = new playSound("assets/snd/foghorn.mp3"); //* party trumpet sound
+    winSound = new playSound("assets/snd/foghorn.mp3"); 
     winSound.play();
-
-    setTimeout(reStart, 5000);
-    
+    setTimeout(reStart, 5000); 
   } else if (currPuzz >= 10 && scorePoint >= 10) {
     gameRound ++ ;
-    roundtime = roundtime - 10 ;
-
-    winSound = new playSound("assets/snd/partypop.mp3"); //* party trumpet sound
+    roundtime = roundtime - 10 ; //* reduce round timer by 10 seconds
+    clearInterval(countdown);
+    document.getElementById("round-score").innerHTML = `You made it to round ${gameRound}, ${userName}` ;
+    winSound = new playSound("assets/snd/partypop.mp3"); 
     winSound.play();
-
-    setTimeout(nextRound, 2000); //* wait 5 seconds to enjoy win before next round
+    setTimeout(nextRound, 3000); //* wait 5 seconds to enjoy win before next round
   }
 }
 
@@ -187,6 +182,7 @@ function nextRound() {
     wonGame(); 
   }
   currPuzz = scorePoint = 0; //* reset the puzzle count to 0
+  document.getElementById("round-score").innerHTML = `Round <span id="roundbox">1</span> Score <span id="scorebox">0</span>` ;
   document.getElementById("roundbox").innerText = gameRound; //* increment the round
   document.getElementById("scorebox").innerText = scorePoint; //* reset score to 0 for next round
   altpuzzles.length = 0; //* reset nested array for new round
@@ -224,7 +220,8 @@ function refreshTimer(buttonText) {
 function stopGame() {
   //* game over alert
   resultContainer.innerText = `You ran out of time ${userName}. Try again !`;
-  reStart();
+  document.getElementById("round-score").innerHTML = "" ;
+  setTimeout(reStart, 5000); 
 }
 
 //* progress timer code functions
@@ -239,8 +236,8 @@ function startTimer(progTime) {
 function resetTimer() {
   clearInterval(countdown);
   toggle = true; //* reset the toggle after resetting the countdown
-  width = 1;
-  elem.style.width = width;
+  width = 0;
+  progBar.style.width = width;
   startTimer();
 }
 
@@ -252,7 +249,7 @@ function currentTime() {
   sec--; //* the sec variable holds the quiz timer value and alerts if less than 0
 
   width = width + progtime; //* match progress percentage reminaing seconds (100/sec)
-  elem.style.width = width + "%"; //* draws the progress bar on the page
+  progBar.style.width = width + "%"; //* draws the progress bar on the page
 }
 
 function reStart() {
