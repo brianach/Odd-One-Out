@@ -34,7 +34,7 @@ var progBar = document.getElementById("my-prog-bar");
 var i = 0;
 var width = 0.0;
 var progtime = 0.0; //* progress bar increment variable
-var roundtime = 200; //* set initial time to allow for 10 rounds of play
+var roundtime = 00; //* set initial time to allow for 10 rounds of play
 
 getUname();
 
