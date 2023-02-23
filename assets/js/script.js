@@ -34,7 +34,7 @@ var progBar = document.getElementById("my-prog-bar");
 var i = 0;
 var width = 0.0;
 var progtime = 0.0; //* progress bar increment variable
-var roundtime = 110; //* set initial time to allow for 10 rounds of play
+var roundtime = 100; //* set initial time to allow for 10 rounds of play
 
 getUname();
 
@@ -166,7 +166,8 @@ function scoreCalc() {
   }
   if (currPuzz >= 10 && scorePoint < 10) {
     clearInterval(countdown);
-    resultContainer.innerText = `Hard luck ${userName}. Try again !`;
+    document.getElementById("round-score").style.display = "none" ;
+    resultContainer.innerText = `Hard luck ${userName}. Try again !` ;
     winSound = new playSound("assets/snd/foghorn.mp3"); 
     winSound.play();
     setTimeout(reStart, 5000); 
@@ -183,6 +184,7 @@ function scoreCalc() {
 
 function nextRound() {
   if ( gameRound >= 10 ) {
+    clearInterval(countdown);
     wonGame(); 
   }
   currPuzz = scorePoint = 0; //* reset the puzzle count to 0
@@ -263,7 +265,6 @@ function reStart() {
 
 function wonGame(){
   //* hide game area and set title 
-  clearInterval(countdown);
 
   let playArea = document.querySelector(".game-area");
   playArea.style.display = "none";
