@@ -34,7 +34,7 @@ var progBar = document.getElementById("my-prog-bar");
 var i = 0;
 var width = 0.0;
 var progtime = 0.0; //* progress bar increment variable
-var roundtime = 100; //* set initial time to allow for 10 rounds of play
+var roundtime = 200; //* set initial time to allow for 10 rounds of play
 
 getUname();
 
@@ -213,11 +213,11 @@ function playSound(src) {
 function refreshTimer(buttonText) {
   //* start the countdown progress bar
   switch (toggle) {
-    case true: //* will run if the toggle value is true after the timer was reset or at the start
+    case true: 
       startTimer();
       break;
     case false:
-      resetTimer(); //* will run if the tiggle value is fase ie after resert button is clicked
+      resetTimer(); 
       break;
   }
   playPuzz(buttonText);
@@ -235,7 +235,7 @@ function stopGame() {
 function startTimer(progTime) {
   sec = roundtime ;
   progtime = 100 / sec;
-  countdown = setInterval(currentTime, 100);
+  countdown = setInterval(currentTime, roundtime);
   toggle = false; //* set to false once timer starts so will trigger reset if button is clicked
 }
 
