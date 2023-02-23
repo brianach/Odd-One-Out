@@ -183,7 +183,7 @@ function scoreCalc() {
 }
 
 function nextRound() {
-  if ( gameRound >= 2 ) {
+  if ( gameRound >= 10 ) {
     wonGame(); 
   }
   currPuzz = scorePoint = 0; //* reset the puzzle count to 0
