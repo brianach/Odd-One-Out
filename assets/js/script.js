@@ -122,6 +122,10 @@ function newPuzz() {
     currentId = "b-".concat(btn + 1); //* load variable with the current button id
     myIcon = document.getElementById(currentId); //* get the button information of the current id
     myIcon.setAttribute("class", `${altpuzzle[btn]} fa-5x`); //* assign the icon from the current puzzle array location to the button
+    myIcon.style.width = "120px" //* make sure icons are always the same width
+    myIcon.style.border = "none" ;
+    myIcon.style.backgroundColor = "white" ;
+
     if (oddOne === altpuzzle[btn]) {
       //* check if the currently selected button matches the odd one out
       myIcon.setAttribute("odd-flag", 1); //* set the odd-flag attribute to 1 if the odd one out matches

@@ -1,5 +1,6 @@
 h1 {
 	text-align: center;
+	font-size: xx-large;
   }
   
   .username-input {
@@ -46,6 +47,15 @@ h1 {
 	justify-content: center;
   }
   
+  .scores {
+	margin: 0%;
+  }
+
+  #round-score {
+	margin: 0%;
+	font-size: xx-large;
+  }
+
   .game-button {
 	border-radius: 50%;
 	border-width: inherit;
@@ -65,7 +75,8 @@ h1 {
   }
   
   .prog-container {
-	width: 200px;
+	padding-top: 5%;
+	width: 440px;
 	display: flex;
 	flex-direction: column;
   }
@@ -80,4 +91,5 @@ h1 {
 	height: 30px;
 	background-color: #ddd;
   }
+  
   
