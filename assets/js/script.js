@@ -34,7 +34,7 @@ var progBar = document.getElementById("my-prog-bar");
 var i = 0;
 var width = 0.0;
 var progtime = 0.0; //* progress bar increment variable
-var roundtime = 00; //* set initial time to allow for 10 rounds of play
+var roundtime = 100; //* set initial time to allow for 10 rounds of play
 
 getUname();
 
@@ -175,7 +175,7 @@ function scoreCalc() {
     gameRound ++ ;
     roundtime = roundtime - 10 ; //* reduce round timer by 10 seconds
     clearInterval(countdown);
-    document.getElementById("round-score").innerHTML = `You made it to round ${gameRound}, ${userName}` ;
+    document.getElementById("round-score").innerHTML = `Well done ${userName} !\n You made it to round ${gameRound}.` ;
     winSound = new playSound("assets/snd/partypop.mp3"); 
     winSound.play();
     setTimeout(nextRound, 3000); //* wait 5 seconds to enjoy win before next round
@@ -225,7 +225,7 @@ function refreshTimer(buttonText) {
 
 function stopGame() {
   //* game over alert
-  resultContainer.innerText = `You ran out of time ${userName}. Try again !`;
+  resultContainer.innerText = `You ran out of time ${userName}.\n Try again !`;
   document.getElementById("round-score").innerHTML = "" ;
   setTimeout(reStart, 5000); 
 }
