@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Rubik+Moonrocks&family=Stick+No+Bills:wght@500&display=swap');
+
+body {
+	font-family: "Boogaloo", sans-serif;
+}
+
 h1 {
 	text-align: center;
 	font-size: xx-large;
@@ -17,7 +23,7 @@ h1 {
   .quiz-button {
 	width: 30%;
 	content: url(../img/quiz.png);
-	margin-top: 10%;
+	margin-top: 25px;
 	margin-left: auto;
 	margin-right: auto;
   }
@@ -145,5 +151,4 @@ h1 {
 	#round-score {
 		font-size: medium;
 	}
-	  }
   }

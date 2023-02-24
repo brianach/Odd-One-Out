@@ -227,6 +227,8 @@ function stopGame() {
   //* game over alert
   resultContainer.innerText = `You ran out of time ${userName}.\n Try again !`;
   document.getElementById("round-score").innerHTML = "" ;
+  winSound = new playSound("assets/snd/foghorn.mp3"); 
+  winSound.play();
   setTimeout(reStart, 5000); 
 }
 
