@@ -1,12 +1,12 @@
-//* initialize and set up game variables
-var oddOne = ""; //* holds the odd one out array entry
-var currPuzz = 0; //*counter to check which puzzle from the puzzles array is currently active
-var scorePoint = 0;
-var puzzle = "";
-var userName = "";
-var currentId = ""; //* id of the currently selected button
-var gameRound = 1; //* set initial value for round
-var winSound = "";
+//* initialize and set up game letiables
+let  oddOne = ""; //* holds the odd one out array entry
+let currPuzz = 0; //*counter to check which puzzle from the puzzles array is currently active
+ scorePoint = 0;
+let puzzle = "";
+let userName = "";
+let currentId = ""; //* id of the currently selected button
+let gameRound = 1; //* set initial value for round
+let winSound = "";
 let quizPlay = document.querySelector(".username-input");
 const gameButtons = document.querySelectorAll(".game-button");
 const resultContainer = document.querySelector("#result");
@@ -27,14 +27,14 @@ const puzzles = [
 const altpuzzles = []; //* temporary puzzles array
 const altpuzzle = []; //* temporary puzzle
 
-//* progress bar and timer variables
-var countdown, sec;
-var toggle = true;
-var progBar = document.getElementById("my-prog-bar");
-var i = 0;
-var width = 0.0;
-var progtime = 0.0; //* progress bar increment variable
-var roundtime = 100; //* set initial time to allow for 10 rounds of play
+//* progress bar and timer letiables
+let countdown, sec;
+let toggle = true;
+let progBar = document.getElementById("my-prog-bar");
+let i = 0;
+let width = 0.0;
+let progtime = 0.0; //* progress bar increment letiable
+let roundtime = 200; //* set initial time to allow for 10 rounds of play
 
 getUname();
 
@@ -119,7 +119,7 @@ function newPuzz() {
   //* render the icons for the current puzzle
   for (let btn = 0; btn < 4; ++btn) {
     //* load an icon into each button from the puzzle array
-    currentId = "b-".concat(btn + 1); //* load variable with the current button id
+    currentId = "b-".concat(btn + 1); //* load letiable with the current button id
     myIcon = document.getElementById(currentId); //* get the button information of the current id
     myIcon.setAttribute("class", `${altpuzzle[btn]} fa-5x`); //* assign the icon from the current puzzle array location to the button
     myIcon.style.width = "120px" //* make sure icons are always the same width
@@ -150,7 +150,7 @@ function playPuzz(currentId) {
   }
   puzzle = altpuzzles[currPuzz]; //* set the puzzle to the current puzzle array value while preserving original
   altpuzzle.push(...puzzle);
-  oddOne = altpuzzle[3]; //* copy the last entry of the current puzzle array which is the odd one out into a variable
+  oddOne = altpuzzle[3]; //* copy the last entry of the current puzzle array which is the odd one out into a letiable
   altpuzzle.sort(() => Math.random() - 0.5); //* randomize the order of the buttons so that the odd one isn't always in the same location
   newPuzz(); //* call the function that renders the puzzle array buttons
 
@@ -164,6 +164,7 @@ function scoreCalc() {
     //* if the odd one out is not seletect decrement the score
     document.getElementById("scorebox").innerText = --scorePoint;
   }
+
   if (currPuzz >= 10 && scorePoint < 10) {
     clearInterval(countdown);
     document.getElementById("round-score").style.display = "none" ;
@@ -180,13 +181,14 @@ function scoreCalc() {
     winSound.play();
     setTimeout(nextRound, 3000); //* wait 5 seconds to enjoy win before next round
   }
-}
-
-function nextRound() {
-  if ( gameRound >= 10 ) {
+  if ( gameRound >= 11 ) {
     clearInterval(countdown);
     wonGame(); 
   }
+}
+
+function nextRound() {
+
   currPuzz = scorePoint = 0; //* reset the puzzle count to 0
   document.getElementById("round-score").innerHTML = `Round <span id="roundbox">1</span> Score <span id="scorebox">0</span>` ;
   document.getElementById("roundbox").innerText = gameRound; //* increment the round
@@ -254,7 +256,7 @@ function currentTime() {
     clearInterval(countdown);
     stopGame();
   }
-  sec--; //* the sec variable holds the quiz timer value and alerts if less than 0
+  sec--; //* the sec letiable holds the quiz timer value and alerts if less than 0
 
   width = width + progtime; //* match progress percentage reminaing seconds (100/sec)
   progBar.style.width = width + "%"; //* draws the progress bar on the page
@@ -272,6 +274,9 @@ function wonGame(){
   playArea.style.display = "none";
   let scoreArea = document.querySelector(".score-area");
   scoreArea.style.display = "none";
+
+  winSound = new playSound("assets/snd/wingame.mp3"); 
+  winSound.play();
 
   pageTitle = document.getElementsByTagName("h1")[0].innerText = `WooHoo!! ${userName} wins the game !!` ;
   document.body.style.paddingTop = "20%" ; //* allow for all screens
