@@ -1,154 +1,152 @@
-@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Rubik+Moonrocks&family=Stick+No+Bills:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Boogaloo&family=Rubik+Moonrocks&family=Stick+No+Bills:wght@500&display=swap");
 
 body {
-	font-family: "Boogaloo", sans-serif;
+  font-family: "Boogaloo", sans-serif;
 }
 
 h1 {
-	text-align: center;
-	font-size: xx-large;
-  }
-  
-  .username-input {
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-  }
-  
-  .uname-entry {
-	text-align: center;
-  }
-  
-  .quiz-button {
-	width: 30%;
-	content: url(../img/quiz.png);
-	margin-top: 25px;
-	margin-left: auto;
-	margin-right: auto;
-  }
-  
-  .quiz-button:hover {
-	opacity: 0.5;
-  }
-  
-  .game-area {
-	/* grid-template-columns: auto auto auto auto; */
-	flex-direction: column;
-	align-items: center;
-	justify-self: center;
-	justify-content: center;
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 5%;
-  }
-  
+  text-align: center;
+  font-size: xx-large;
+}
+
+.username-input {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.uname-entry {
+  text-align: center;
+}
+
+.play-level {
+  display: flex;
+  justify-content: center;
+}
+
+.play-level .lev-button {
+  border: none;
+  background-color: white;
+}
+
+.game-area {
+  /* grid-template-columns: auto auto auto auto; */
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5%;
+}
+
+.controls-area {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.score-area {
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scores {
+  margin: 0%;
+}
+
+#round-score {
+  margin: 0%;
+  font-size: xx-large;
+}
+
+.game-button {
+  border-radius: 50%;
+  border-width: inherit;
+  border-color: white;
+  background-color: white;
+  width: 100px;
+  height: 100px;
+}
+
+#result {
+  margin: 0;
+  padding-top: 5%;
+  font-size: xx-large;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.prog-container {
+  padding-top: 5%;
+  width: 440px;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-progress {
+  width: 100%;
+  background-color: green;
+}
+
+#my-prog-bar {
+  width: 1%;
+  height: 30px;
+  background-color: #ddd;
+}
+
+@media only screen and (max-width: 600px) {
   .controls-area {
-	display: flex;
-	padding-bottom: 10px;
+    font-size: smaller;
   }
-  
-  .score-area {
-	flex-flow: column;
-	align-items: center;
-	justify-content: center;
+  .fas {
+    width: 100px;
   }
-  
-  .scores {
-	margin: 0%;
-  }
-
-  #round-score {
-	margin: 0%;
-	font-size: xx-large;
-  }
-
-  .game-button {
-	border-radius: 50%;
-	border-width: inherit;
-	border-color: white;
-	background-color: white;
-	width: 100px;
-	height: 100px;
-  }
-  
   #result {
-	margin: 0;
-	padding-top: 5%;
-	font-size: xx-large;
-	display: flex;
-	justify-content: center;
-	text-align: center;
+    font-size: x-large;
   }
-  
+  #round-score {
+    font-size: x-large;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .controls-area {
+    width: 90%;
+    font-size: x-small;
+  }
+  .fas {
+    width: 80px;
+  }
   .prog-container {
-	padding-top: 5%;
-	width: 440px;
-	display: flex;
-	flex-direction: column;
+    width: 90%;
   }
-  
-  .my-progress {
-	width: 100%;
-	background-color: green;
+  #result {
+    font-size: large;
   }
-  
-  #my-prog-bar {
-	width: 1%;
-	height: 30px;
-	background-color: #ddd;
+  #round-score {
+    font-size: large;
   }
-  
-  @media only screen and (max-width: 600px) {
-	.controls-area{
-		font-size: smaller;
-	}
-	.fas{
-		width: 100px;
-	}
-	#result {
-		font-size: x-large;
-	}
-	#round-score {
-		font-size: x-large;
-	}
-  }
+}
 
-  @media only screen and (max-width: 500px) {
-	.controls-area{
-		width: 90%;
-		font-size: x-small;
-	}
-	.fas {
-		width: 80px;
-	}
-	.prog-container {
-		width: 90%;
-	}
-	#result {
-		font-size: large;
-	}
-	#round-score {
-		font-size: large;
-	}
-	  }
-
-  @media only screen and (max-width: 380px) {
-	.controls-area{
-		width: %;
-		font-size: xx-small;
-	}
-	.fas {
-		width: 80px;
-	}
-	.prog-container {
-		width: 80%;
-	}
-	.scores h2 {
-		font: x-large;
-	}
-	#round-score {
-		font-size: medium;
-	}
+@media only screen and (max-width: 380px) {
+  .controls-area {
+    width: 80%;
+    font-size: 40%;
   }
+  .fas {
+    width: 80px;
+  }
+  .prog-container {
+    width: 80%;
+  }
+  .scores h2 {
+    font: x-large;
+  }
+  #round-score {
+    font-size: medium;
+  }
+}

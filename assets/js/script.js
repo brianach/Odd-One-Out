@@ -7,13 +7,19 @@ let userName = "";
 let currentId = ""; //* id of the currently selected button
 let gameRound = 1; //* set initial value for round
 let winSound ; //* audio file variabble
-let response ; //* html text variabble
 let myIcon ; //* button id variabble
 let scoreFlag ;
 let pageTitle ;
 let quizPlay = document.querySelector(".username-input");
-const gameButtons = document.querySelectorAll(".game-button");
-const resultContainer = document.querySelector("#result");
+let levelButtons = document.querySelectorAll(".lev-button");
+let gameButtons = document.querySelectorAll(".game-button");
+let response = document.getElementById("response");
+let resultContainer = document.querySelector("#result");
+let unameBox = document.querySelector(".uname-entry");
+
+let playArea = document.querySelector(".game-area");
+let scoreArea = document.querySelector(".score-area");
+let hardNess = document.querySelector(".play-level");
 
 let alpha, animals, clouds, danger, devices, faces, foods, homes, motor, tools ;
 
@@ -39,11 +45,12 @@ let toggle = true;
 let progBar = document.getElementById("my-prog-bar");
 let width = 0.0;
 let progtime = 0.0; //* progress bar increment letiable
-let roundtime = 200; //* set initial time to allow for 10 rounds of play
+let roundtime ; //* set initial time to allow for 10 rounds of play
 
 getUname();
 
-function getUname() {//* get the username from the player and wait for enter
+function getUname() {
+  //* get the username from the player and wait for enter
   document
     .querySelector("#uname-in")
     .addEventListener("keydown", function (event) {
@@ -53,25 +60,30 @@ function getUname() {//* get the username from the player and wait for enter
     });
 
   //* hide game play area section while username input is in progress
-  let playArea = document.querySelector(".game-area");
   playArea.style.display = "none";
-  let scoreArea = document.querySelector(".score-area");
   scoreArea.style.display = "none";
+  hardNess.style.display = "none";
   //* prompt for username
-  document.getElementsByTagName("h3")[0].innerText = "Type your username below then press enter.";
+  document.getElementsByTagName("h3")[0].innerText =
+    "Type your username below then press enter.";
 }
 
 function respondUser() {
   //* feedback for username input section
   userName = document.getElementById("uname-in").value;
 
-  if (userName.trim() == "") { //* warn player that they have not entered a username
+  if (userName.trim() == "") {
+    //* warn player that they have not entered a username
     response.textContent = `You have to type in a username to play !`;
     response.style.color = "red";
     setTimeout(clearName, 3000);
-  } else { //* respond to the player once they entered their username
-    document.getElementsByTagName( "h3" )[0].innerText = `Hi ${userName}, click the lightbulb to play`;
-    quizPlay.addEventListener("click", clearUserInp);
+  } else {
+    //* respond to the player once they entered their username
+    unameBox.style.display = "none";
+    hardNess.style.display = "block";
+    document.getElementsByTagName(
+      "h3"
+    )[0].innerHTML = `Select difficulty level <span style="font-size:30px">${userName}`;
   }
   function clearName() {
     response.style.color = "white";
@@ -80,26 +92,38 @@ function respondUser() {
 
 //* Main game section
 
+levelButtons.forEach((button) =>
+  button.addEventListener("click", levelButtonHandler)
+);
+
+function levelButtonHandler(event) {
+  if (event.currentTarget.id === "easy") {
+    roundtime = 200;
+  } else if (event.currentTarget.id === "normal") {
+    roundtime = 150;
+  } else if (event.currentTarget.id === "hard") {
+    roundtime = 100;
+  } else {
+    alert(`Something went wrong`);
+  }
+  quizPlay.addEventListener("click", clearUserInp);
+}
+
 function clearUserInp() {
-  //* hide game play for user input section
-  let playArea = document.querySelector(".username-input");
-  playArea.style.display = "none";
+  quizPlay.style.display = "none";
   revealGameArea();
 }
 
 function revealGameArea() {
   //* reveal the game area after user input section
-  let playArea = document.querySelector(".game-area");
   playArea.style.display = "flex";
-  let scoreArea = document.querySelector(".score-area");
   scoreArea.style.display = "flex";
-  //* start the game
   setPuzzOne();
 }
 
 gameButtons.forEach((
   button //* listen for mouse clicks in the main game area
-) => button.addEventListener("click", buttonClickHandler));  
+) => button.addEventListener("click", buttonClickHandler));
 
 function buttonClickHandler(event) {
   //* button click logic decision code
@@ -127,9 +151,9 @@ function newPuzz() {
     currentId = "b-".concat(btn + 1); //* load letiable with the current button id
     myIcon = document.getElementById(currentId); //* get the button information of the current id
     myIcon.setAttribute("class", `${altpuzzle[btn]} fa-5x`); //* assign the icon from the current puzzle array location to the button
-    myIcon.style.width = "120px" ; //* make sure icons are always the same width
-    myIcon.style.border = "none" ;
-    myIcon.style.backgroundColor = "white" ;
+    myIcon.style.width = "120px"; //* make sure icons are always the same width
+    myIcon.style.border = "none";
+    myIcon.style.backgroundColor = "white";
 
     if (oddOne === altpuzzle[btn]) {
       //* check if the currently selected button matches the odd one out
@@ -172,30 +196,33 @@ function scoreCalc() {
 
   if (currPuzz >= 10 && scorePoint < 10) {
     clearInterval(countdown);
-    document.getElementById("round-score").style.display = "none" ;
-    resultContainer.innerText = `Hard luck ${userName}. Try again !` ;
-    winSound = new playSound("assets/snd/foghorn.mp3"); 
+    document.getElementById("round-score").style.display = "none";
+    resultContainer.innerHTML = `Hard luck ${userName}. <br/> Try again !`;
+    winSound = new playSound("assets/snd/foghorn.mp3");
     winSound.play();
-    setTimeout(reStart, 5000); 
+    setTimeout(reStart, 5000);
   } else if (currPuzz >= 10 && scorePoint >= 10) {
-    gameRound ++ ;
-    roundtime = roundtime - 10 ; //* reduce round timer by 10 seconds
+    gameRound++;
+    roundtime = roundtime - 10; //* reduce round timer by 10 seconds
     clearInterval(countdown);
-    document.getElementById("round-score").innerHTML = `Well done ${userName} !\n You made it to round ${gameRound}.` ;
-    winSound = new playSound("assets/snd/partypop.mp3"); 
+    document.getElementById(
+      "round-score"
+    ).innerHTML = `Well done ${userName} !! <br/> You made it to round ${gameRound}.`;
+    winSound = new playSound("assets/snd/partypop.mp3");
     winSound.play();
     setTimeout(nextRound, 3000); //* wait 5 seconds to enjoy win before next round
   }
-  if ( gameRound >= 11 ) {
+  if (gameRound >= 11) {
     clearInterval(countdown);
-    wonGame(); 
+    wonGame();
   }
 }
 
 function nextRound() {
-
   currPuzz = scorePoint = 0; //* reset the puzzle count to 0
-  document.getElementById("round-score").innerHTML = `Round <span id="roundbox">1</span> Score <span id="scorebox">0</span>` ;
+  document.getElementById(
+    "round-score"
+  ).innerHTML = `Round <span id="roundbox">1</span> Score <span id="scorebox">0</span>`;
   document.getElementById("roundbox").innerText = gameRound; //* increment the round
   document.getElementById("scorebox").innerText = scorePoint; //* reset score to 0 for next round
   altpuzzles.length = 0; //* reset nested array for new round
@@ -220,11 +247,11 @@ function playSound(src) {
 function refreshTimer(buttonText) {
   //* start the countdown progress bar
   switch (toggle) {
-    case true: 
+    case true:
       startTimer();
       break;
     case false:
-      resetTimer(); 
+      resetTimer();
       break;
   }
   playPuzz(buttonText);
@@ -232,17 +259,17 @@ function refreshTimer(buttonText) {
 
 function stopGame() {
   //* game over alert
-  resultContainer.innerText = `You ran out of time ${userName}.\n Try again !`;
-  document.getElementById("round-score").innerHTML = "" ;
-  winSound = new playSound("assets/snd/foghorn.mp3"); 
+  resultContainer.innerText = `You ran out of time ${userName}.<br/> Try again !`;
+  document.getElementById("round-score").innerHTML = "";
+  winSound = new playSound("assets/snd/foghorn.mp3");
   winSound.play();
-  setTimeout(reStart, 5000); 
+  setTimeout(reStart, 5000);
 }
 
 //* progress timer code functions
 
 function startTimer(progTime) {
-  sec = roundtime ;
+  sec = roundtime;
   progtime = 100 / sec;
   countdown = setInterval(currentTime, roundtime);
   toggle = false; //* set to false once timer starts so will trigger reset if button is clicked
@@ -269,23 +296,24 @@ function currentTime() {
 
 function reStart() {
   //* this loads the entire game from scratch
-  location.reload() ;
+  location.reload();
 }
 
-function wonGame(){
-  //* hide game area and set title 
+function wonGame() {
+  //* hide game area and set title
 
   let playArea = document.querySelector(".game-area");
   playArea.style.display = "none";
   let scoreArea = document.querySelector(".score-area");
   scoreArea.style.display = "none";
 
-  winSound = new playSound("assets/snd/wingame.mp3"); 
+  winSound = new playSound("assets/snd/wingame.mp3");
   winSound.play();
 
-  pageTitle = document.getElementsByTagName("h1")[0].innerText = `WooHoo!! ${userName} wins the game !!` ;
-  document.body.style.paddingTop = "20%" ; //* allow for all screens
+  pageTitle = document.getElementsByTagName(
+    "h1"
+  )[0].innerText = `WooHoo!! ${userName} wins the game !!`;
+  document.body.style.paddingTop = "20%"; //* allow for all screens
 
   setTimeout(reStart, 5000);
-
 }
