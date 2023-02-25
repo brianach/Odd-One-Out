@@ -1,15 +1,21 @@
 //* initialize and set up game letiables
 let  oddOne = ""; //* holds the odd one out array entry
 let currPuzz = 0; //*counter to check which puzzle from the puzzles array is currently active
- scorePoint = 0;
+let scorePoint = 0;
 let puzzle = "";
 let userName = "";
 let currentId = ""; //* id of the currently selected button
 let gameRound = 1; //* set initial value for round
-let winSound = "";
+let winSound ; //* audio file variabble
+let response ; //* html text variabble
+let myIcon ; //* button id variabble
+let scoreFlag ;
+let pageTitle ;
 let quizPlay = document.querySelector(".username-input");
 const gameButtons = document.querySelectorAll(".game-button");
 const resultContainer = document.querySelector("#result");
+
+let alpha, animals, clouds, danger, devices, faces, foods, homes, motor, tools ;
 
 //* array to hold arrays of icons for of all ten puzzles
 const puzzles = [
@@ -31,7 +37,6 @@ const altpuzzle = []; //* temporary puzzle
 let countdown, sec;
 let toggle = true;
 let progBar = document.getElementById("my-prog-bar");
-let i = 0;
 let width = 0.0;
 let progtime = 0.0; //* progress bar increment letiable
 let roundtime = 200; //* set initial time to allow for 10 rounds of play
@@ -122,7 +127,7 @@ function newPuzz() {
     currentId = "b-".concat(btn + 1); //* load letiable with the current button id
     myIcon = document.getElementById(currentId); //* get the button information of the current id
     myIcon.setAttribute("class", `${altpuzzle[btn]} fa-5x`); //* assign the icon from the current puzzle array location to the button
-    myIcon.style.width = "120px" //* make sure icons are always the same width
+    myIcon.style.width = "120px" ; //* make sure icons are always the same width
     myIcon.style.border = "none" ;
     myIcon.style.backgroundColor = "white" ;
 
@@ -264,7 +269,7 @@ function currentTime() {
 
 function reStart() {
   //* this loads the entire game from scratch
-  location.reload()
+  location.reload() ;
 }
 
 function wonGame(){
