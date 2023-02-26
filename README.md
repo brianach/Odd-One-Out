@@ -68,30 +68,21 @@ I drew a rough sketch on paper first with some notes to explain how the game wor
 
 ### <h2>Color</h2><br>
 
-I chose a basic black and white scheme to fit in with the quiz book idea and a Boogaloo Google Font for its playful and 
-
-![Color sampling](doc/design/cover-text-transparency.png)
-
-
-Initially I wanted to incorporate the idea of an historical timeline using skewed and staggered pictures with basic information below and above each year. However I wasn't able to impletent this in testing to allow for different screen sizes so I abandoned the idea in favour of a simpler layout based on and incorporating some of the code from the Love Running project. I may revisit this idea after I gain more experience and skills in web development. <a href="https://codepen.io/brianach/pen/eYjZgYm" target="blank">Code Snippet</a>
-
-![Previous Idea](doc/scrapped.png)
-
+I chose a basic black and white scheme to fit in with the quiz book idea. 
 <br>
 
 ### <h2>Fonts</h2><br>
 
-I chose IM Fell for the Title and Menu and Lora for the body. I chose IM Fell as I wanted something with an antique flavour to it and I chose Lora as it was a good comlimentary font. IM Fell was also a good match for the Plassy prefix.
+I chose a Boogaloo Google Font for its playful and jokey style. 
+
 
 <br>
 
 ### <h2>Structure</h2><br>
 
-I stayed with a basic clean look and feel, again taking design cues from the Love Running project. The interface is clear and simple but in addition the sub pages which can only be accessed via the history page is highly intuitive. In fact the first person I asked to have a look immediately went to that timeline link bar without my having to point out that it was a navigation bar. 
+The initial weclome screen is simple but intuitive which invites the play to create a username once entered allows the player to select a difficulty level leading on to the game play area itself.
 
-![Menubar](doc/menubar.png)
-
-I chose not to turn the timeline at the bottom of the home page into a navigation bar because it would prevent the visitor from going to the history page first. This page is the starting off point for the history journey and the visitor might miss out on this central point of the journey if the timeline were used to link to other pages.
+I stayed with a basic linear game play area which is simple an intuitive requiring no additional help or information for the player. The progress bar is right below the play area but close enough to theplayers field of vision to give an added sense of excitement to the play. 
 
 <br>
 
