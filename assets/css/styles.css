@@ -31,7 +31,6 @@ h1 {
 }
 
 .game-area {
-  /* grid-template-columns: auto auto auto auto; */
   flex-direction: column;
   align-items: center;
   justify-self: center;
