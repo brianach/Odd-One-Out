@@ -1,7 +1,7 @@
-/** Google Fonts Import section */
+/* Google Fonts Import section */
 @import url("https://fonts.googleapis.com/css2?family=Boogaloo&family=Rubik+Moonrocks&family=Stick+No+Bills:wght@500&display=swap");
 
-/** Main page styling */
+/* Main page styling */
 body {
   font-family: "Boogaloo", sans-serif;
 }
@@ -22,7 +22,7 @@ h1 {
   text-align: center;
 }
 
-/** Game play section styling */ 
+/* Game play section styling */ 
 .play-level {
   justify-content: center;
 }
@@ -67,7 +67,7 @@ h1 {
   text-align: center;
 }
 
-/** progress bar styling section */
+/* progress bar styling section */
 .prog-container {
   padding-top: 5%;
   width: 440px;
@@ -86,7 +86,7 @@ h1 {
   background-color: #ddd;
 }
 
-/** Display of scores */
+/* Display of scores */
 .score-area {
   flex-flow: column;
   align-items: center;
@@ -102,7 +102,29 @@ h1 {
   font-size: xx-large;
 }
 
-/** Media screen adjustments section*/
+/* footer - from love-running */
+
+footer {
+  height: 150px;
+}
+
+.social-networks {
+  padding: 0%;
+  text-align: center;
+}
+
+.social-networks > li {
+  display: inline;
+}
+
+.social-networks i {
+  font-size: 160%;
+  margin: 1%;
+  padding: 5%;
+  color: #3a3a3a;
+}
+
+/* Media screen adjustments section*/
 
 @media only screen and (max-width: 600px) {
   .controls-area {
