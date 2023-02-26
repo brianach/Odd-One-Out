@@ -12,7 +12,6 @@
 <br>
 
 - [Introduction](#introduction)
-  + 
 - [Goals](#goals)
   + [Personal Goals](#personal-goals)
   + [Player Goals](#player-goals)
