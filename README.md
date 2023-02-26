@@ -11,8 +11,6 @@
 
 <br>
 
-
-- [Odd One Out](#Odd One Out)
 - [Introduction](#introduction)
   + 
 - [Goals](#goals)
