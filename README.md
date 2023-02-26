@@ -17,7 +17,7 @@
   + 
 - [Goals](#goals)
   + [Personal Goals](#personal-goals)
-  + [Visitor Goals](#visitor-goals)
+  + [Player Goals](#player-goals)
 - [Design and Planning](#design-and-planning)
   + [Color](#color)
   + [Fonts](#fonts)
@@ -26,13 +26,12 @@
   + [Wireframes](#wireframes)
   + [Languages and Technologies](#languages-and-technologies)
 - [Testing](#testing)
-  + [Accessibility](#accessibility)
   + [Performance](#performance)
   + [Validation](#validation)
   + [Reponsiveness](#responsiveness)
-- [User Story Testing](#user-story-testing)
+- [Game Testing](#game-testing)
 - [Acknowledgements](#acknowledgements)
-- [Credits](#credits)
+
 
 <br><hr><br>
 
@@ -53,7 +52,7 @@ I added a progress par to add an element of excitement.
 
 <br>
 
-### <h2>Visitor Goals</h2>
+### <h2>Player Goals</h2>
 
 <br>
 
@@ -82,68 +81,49 @@ I chose a Boogaloo Google Font for its playful and jokey style.
 
 The initial weclome screen is simple but intuitive which invites the play to create a username once entered allows the player to select a difficulty level leading on to the game play area itself.
 
+<img src="doc/img/welcome.png"><img src="doc/img/levels.png">
+
 I stayed with a basic linear game play area which is simple an intuitive requiring no additional help or information for the player. The progress bar is right below the play area but close enough to theplayers field of vision to give an added sense of excitement to the play. 
+
+<img src="doc/img/playing.png">
 
 <br>
 
 ### <h2>Features</h2><br>
 
- * Navigation Bar
- * Timeline
- * Social Media Footer
- * Timeline Navigation Bar
- * Feedback form
+ * Player username input
+ * Level Selection
+ * Progress bar
+ * Player feedback
+ * Score display
+ * Win and lose audio samples
 
 <br>
 
 ### <h2>Wireframes</h2><br>
 
-<details><summary>Home</summary><img src="doc/design/home_page.png"></details>
-<details><summary>History</summary><img src="doc/design/hist_page.png"></details>
-<details><summary>Feedback</summary><img src="doc/design/fback_page.png"></details>
+<details><summary>Wireframes</summary><img src="doc/img/wireframes.png"></details>
+
 
 <br>
 
 ### <h2>Languages and Technologies</h2><br>
 
 
-[Balsamiq](https://balsamiq.com/) was used to create the wireframes
+[Balsamiq](https://balsamiq.com/) was used to create the wireframes.
 
-[Google Fonts](https://fonts.google.com) was used for the fonts IM Fell and Lora.
+[Google Fonts](https://fonts.google.com) was used for the Boogaloo font.
 
-[Fontawesome](https://fontawesome.com) was used for the social media icons
+[Fontawesome](https://fontawesome.com) was used for the social media icons.
 
-[Navionocs](https://www.navionics.com/gbr/charts/) was used to create a coastal chart
+[CSS](https://en.wikipedia.org/wiki/CSS) CSS for the design and some media.
 
-[Photoshop](https://sdobe.com) was used to manipulate images
-
-[HTML](https://en.wikipedia.org/wiki/HTML) HTML for the text content and some media
-
-[CSS](https://en.wikipedia.org/wiki/CSS) CSS for the design and some media
-
-[WAVE](https://wave.webaim.org/) WAVE Web Accessibility Evaluation
-
+[JS](https://en.wikipedia.org/wiki/JavaScript) Javascript for the game functionality.
 
 
 <br><hr><br>
 
 ## <h1>Testing</h1><br>
-
-<br>
-
-### <h2>Accessibility</h2>
-
-No errors were found running the website through the WAVE Accessibility Checker website. 
-
-Redundant (self reffering menu) links were removed from the three main pages where the relative page is the active page. This doesn't stop the warning being generated on some WAVE reports.
-
-<details><summary>Home</summary><img src="doc/access/home-accessibility.png"></details>
-<details><summary>History</summary><img src="doc/access/history-accessibility.png"></details>
-<details><summary>History-1940</summary><img src="doc/access/history-1940-accessibility.png"></details>
-<details><summary>History-1947</summary><img src="doc/access/history-1947-accessibility.png"></details>
-<details><summary>History-1951</summary><img src="doc/access/history-1951-accessibility.png"></details>
-<details><summary>History-1960</summary><img src="doc/access/history-1960-accessibility.png"></details>
-<details><summary>Feedback</summary><img src="doc/access/feedback-accessibility.png"></details>
 
 <br>
 
@@ -158,7 +138,6 @@ I used developer tools in Chrome and Firefox during development in order to cont
 * Macbook Air
 * Lenovo Yoga
 * Huawei P20 
-* iPhone
 
 I tested the site using various browsers on the differnet devices.
 
@@ -175,72 +154,33 @@ I tested the site using various browsers on the differnet devices.
 
 *  [HTML Validator](https://validator.w3.org/) was used throughout the project to test for errors. 
 
-    History-1960.html generated an iframe error where I put some youtube content at the bottom of the page. This will be addressed in CSS in a future enhancement.
-
-    A number of pages generated warning where sections do not have any heading. Presentation or performance is not impacted on any device and will be addressed in a future enhancement.
+Empty heading errors. This is by design as the text will be entered programatically during game play.
+Four "Attribute odd-flag not allowed on element button at this point". This is also by design as the game needs to allocate a value to thsi attribute in order to determin which is the odd one out. 
 
 * [CSS Validator](https://validator.w3.org/) used to check for and correct errors. There are currently no errors in the code as currently submitted.
 
-
+No errors were detected in the CSS validator.
 <br>
 
 ### <h2>Responsiveness</h2><br>
 
 * [Lighthouse](https://developer.chrome.com/en/docs/lighthouse/) in Chrome Developer Tools was used to check performance. 
 
-  <details><summary>Home</summary><img src="doc/perform/homepage.png"></details>
-  <details><summary>History</summary><img src="doc/perform/history-1.png"></details>
-
-      Performance was improved here by reducing the size of the main graphic and setting explit width and size on image elements. See performance improvement from above to below.
-
-  <details><summary>History performance after tweak</summary><img src="doc/perform/history-2.png"></details>
-
-    <details><summary>History-1940</summary><img src="doc/perform/history-1940.png"></details>
-    <details><summary>History-1947</summary><img src="doc/perform/history-1947.png"></details>
-    <details><summary>History-1951</summary><img src="doc/perform/history-1951.png"></details>
-    <details><summary>History-1960</summary><img src="doc/perform/history-1960-1.png"></details>
-
-      This page has a large amount of images to support the information on the page. Performance was greatly improved here by reducing the size of the images and setting explit width and size on all image elements. See before image above and result below.
-    <details><summary>History-1960 performance after tweak</summary><img src="doc/perform/history-1960-2.png"></details>   
-
-  <details><summary>Feedback</summary><img src="doc/perform/feedback.png"></details>
+100% on all checks.
 
 <br><hr><br>
 
-## <h1>User Story Testing</h1><br>
+## <h1>Game Testing</h1><br>
 
-I tested the user story as follows.
-
-### <h2>As a visitor I want to get information about the Plassy</h2>
-
-The homepage provides a quick overview with intuite and easy to acces links to further information.
-
-![Homepage](doc/design/home-layout.png)
+I tested the game myself and alos invited friends and family members to do the same. Cosmetic issues with responses to the player were all resolved during the game testing. There are no outstanding issues or errors with the game.
 
 <br>
-
-### <h2>As a visitor I want to learn about the Plassy origins, history and current information</h2>
-
-The history page starts with the origins of the Plassy and presents a clickable timeline to bring the visitor deeper into the story. Each link on the timeline menubar presents a page of information related to the year selected and follows the same page style but substituting the main (hero) image with one which is relevant to the historical information presented.
-
-![Timeline Menubar](doc/design/timeline-menubar.png)
-
-<br>
-
-### <h2>As a visitor I would like to be abel to respond or request more information</h2>
-
-The final feedback page provides the user with an opportunity to react to the site giving them the ability to submit some basic feedback, commentary or request for further information if they so wish.
-
-![Feedback Story](doc/design/feedback-story.png)
-
-<br>
-
 
 ### <h2>Test chart to ensure website works as expected</h2>
 
 All pages were tested with the visitor in mind in terms of accessiblity, presentation, responsiveness and performance. All links were tested to ensure functionality. Below is a simpe chart of the results.
 
-![Test Chart](doc/perform/test-chart.png)
+![Test Chart](doc/img/tests.png)
 
 
 <br>
@@ -252,84 +192,7 @@ All pages were tested with the visitor in mind in terms of accessiblity, present
 Thanks to the following people who have supported me:
 
   + My mentor Gaff (Naoise Gaffney)
-  + Cohort team lead Jonny Davison
+  + Ed Bradley and David on the #ask-us-anything channel
   + My wife Tricia
-  + All the slackers on Code Institue
   + LWETB and Code Institute for the opportunity to do this
-  + Major kudos to my friend Rónán McCall (https://www.futures-photography.com/artists/ronan-mccall) for his help with restoring the rescue photography and scanning them from the originals for inclusion.
 
-<br>
-
-## <h1>Credits</h1>
-
-### <h2>Origins References (History)</h2>
-
-  + <h3><a href="https://www.wrecksite.eu/ownerBuilderView.aspx?533" target="_blank">[Photograph of Cook, Welton & Gemmel shipyard]()</a></h3>
-  + <h3><a href="https://en.wikipedia.org/wiki/Cook,_Welton_%26_Gemmell" target="_blank">Wikipedia entry for Cook, Welton & Gemmel</a></h3>
-  + <h3><a href="https://www.shipsnostalgia.com/media/hms-juliet.38115/" target="_blank">Ship specifications for HMT Juliet</a></h3>
-  + <h3><a href="https://www.gracesguide.co.uk/Cook,_Welton_and_Gemmell" target="_blank">Cook, Welton & Gemmel entry on Grace's Guide</a></h3>
-
-<br>    
-
-### <h2>Juliet References (1940) </h2>
-
-  + <h3><a href="https://uboat.net/allies/warships/ship/6599.html" target="_blank">HMT Juliet Commanders</a></h3>
-  + <h3><a href="https://en.wikipedia.org/wiki/Operation_Torch" target="_blank">Wikipedia entry for Operation Torch</a></h3>
-  + <h3><a href="https://www.shipsnostalgia.com/media/hms-juliet.38115/" target="_blank">Photograph of HMS Juliet</a></h3>
-
-<br> 
-
-### <h2>Peterjon References (1947)</h2>
-
-  + <h3><a href="https://www.shipsnostalgia.com/media/peterjon.32520/" target="_blank">Photograph of Peterjon ready to sail</a></h3>
-  + <h3><a href="https://www.shipsnostalgia.com/media/h-m-s-juliet.24578/" target="_blank">Waiting conversion photograph</a></h3>
-  + <h3><a href="https://www.shipsnostalgia.com/media/plassy.230865/" target="_blank">Almost complete photograph</a></h3>
-  + <h3><a href="https://www.shipsnostalgia.com/media/j-s-doigs-no-1-fitting-shop.105137/" target="_blank">JS Doig's Shipyards</a></h3>
-  + <h3><a href="https://www.gracesguide.co.uk/Crossley_Brothers" target="_blank">Crossley Brothers entry on Graces Guide</a></h3>
-  + <h3><a href="https://en.wikipedia.org/wiki/Crossley" target="_blank">Wikipedia entry for Crossley</a></h3>
-  + <h3><a href="https://lifeboatmagazinearchive.rnli.org/volume/32/349/services-of-the-life-boats-of-the-institution-during-1948?searchterm=Yacht+Gan&page=194" target="_blank">RNLI Archive page</a></h3>
-  + <h3><a href="https://rnliarchive.blob.core.windows.net/media/1350/0349.pdf#page=34" target="_blank">Pages 12 & 40 RNLI Archive featuring SS Peterjon</a></h3>
-
-<br>
-
-### <h2>Plassy References (1951)</h2>
-
-  + <h3><a href="https://www.flickr.com/photos/scottishmaritimemuseum/15651974933" target="_blank">The Plassy at sea from Scottish Maritime Museum on Flickr</a></h3>
-  + <h3><a href="https://www.navionics.com/gbr/charts/" target="_blank"> Navionics online nautical charts</a></h3>
-  
-<br>
-
-### <h2>Rescue References</h2>
-
-+ <h3><a href="https://www.facebook.com/211241455563057/photos/pb.100064625141906.-2207520000./881297881890741/?type=3" target="_blank">Main photograph</a></h3>
-+ <h3> Photograph of Onshore Rescue Unit logo on the doors of 'Teachín an Rocket', Inisheer. Ronán McCall 2003.
-
-+ <h3>List of photographs of the Plassy from private collection</h3>
-
-      Plassy on Finnis rock after rescue
-
-      Onshore Rescue Unit arrives
-
-      Rescue unit assembling 'Rocket'
-
-      Final attempt at rcoket firing
-
-      Unit preparing to pull
-
-      Final crew member ashore
-
-      Plassy lifeboat on rocks
-
-+  <h3><a href="https://www.geograph.org.uk/gridref/L9901?user=15801" target="_blank">From Harold Strong photography on Geograph</a></h3>
-
-        Onshore Rescue Unit on exercise 1962
-
-        Plassy on the rocks port side
-
-        Plassy on the rocks starboard side
-
-        Anchors in the foreground
-
-        Plassy bridge looking astern
-
-+ <h3><a href="https://youtu.be/ca9_nFfjYgs" target="_blank">Video by Nuno Charneca from the Portuguese National Civil Engineering Laboratory for the drone footage. This video was made as part of a drone demo during Citizen Science + GIS Training School @ NUI Galway organized by Seán Lynch, NUIG Geography Society and funded by COST (cost.eu). 22 Aug 2015.</a></h3>
