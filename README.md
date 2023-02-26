@@ -24,7 +24,7 @@
   + [Performance](#performance)
   + [Validation](#validation)
   + [Reponsiveness](#responsiveness)
-- [Game Testing](#game-testing)
+  + [Game Testing](#game-play-testing)
 - [Acknowledgements](#acknowledgements)
 
 
@@ -120,7 +120,6 @@ I stayed with a basic linear game play area which is simple an intuitive requiri
 
 ## <h1>Testing</h1><br>
 
-
 ### <h2>Performance</h2>
 
 I used developer tools in Chrome and Firefox during development in order to continuouly gauge performance and responsiveness. The following hardware was used to test real life performance.
@@ -133,18 +132,21 @@ I tested the site using various browsers on the different devices.
 #### Browsers Used were
 
 Microsoft Edge, Safari, Google Chrome, Mozilla Firefox, Opera
+
 <br>
+
 
 ### <h2>Validation</h2>
 
 *  [HTML Validator](https://validator.w3.org/) was used throughout the project to test for errors. 
 
 Empty heading errors. This is by design as the text will be entered programatically during game play.
-Four "Attribute odd-flag not allowed on element button at this point". This is also by design as the game needs to allocate a value to thsi attribute in order to determin which is the odd one out. 
+Four "Attribute odd-flag not allowed on element button at this point". This is also by design as the game needs to allocate a value to the attribute in order to determine which is the odd one out. 
 
 * [CSS Validator](https://validator.w3.org/) used to check for and correct errors. There are currently no errors in the code as currently submitted.
 
-No errors were detected in the CSS validator.
+* [JSHint Validator](https://jshint.com/) used to check for and correct scripting errors. There are no errors in the final draft.
+
 <br>
 
 ### <h2>Responsiveness</h2>
