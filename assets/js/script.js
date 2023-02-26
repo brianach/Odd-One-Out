@@ -11,6 +11,7 @@ let myIcon ; //* button id variabble
 let scoreFlag ;
 let pageTitle ;
 let quizPlay = document.querySelector(".username-input");
+let diffLev = document.querySelector(".diff-lev");
 let levelButtons = document.querySelectorAll(".lev-button");
 let gameButtons = document.querySelectorAll(".game-button");
 let response = document.getElementById("response");
@@ -63,6 +64,7 @@ function getUname() {
   playArea.style.display = "none";
   scoreArea.style.display = "none";
   hardNess.style.display = "none";
+  diffLev.style.display = "none";
   //* prompt for username
   document.getElementsByTagName("h3")[0].innerText =
     "Type your username below then press enter.";
@@ -79,11 +81,13 @@ function respondUser() {
     setTimeout(clearName, 3000);
   } else {
     //* respond to the player once they entered their username
+    document.getElementsByTagName("h2")[0].style.display = "none";
     unameBox.style.display = "none";
     hardNess.style.display = "block";
     document.getElementsByTagName(
       "h3"
-    )[0].innerHTML = `Select difficulty level <span style="font-size:30px">${userName}`;
+    )[0].innerHTML = `Hi <span style="font-size:30px">${userName}! <br/>`;
+    diffLev.style.display = "block" ;
   }
   function clearName() {
     response.style.color = "white";

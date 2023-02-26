@@ -21,7 +21,6 @@ h1 {
 }
 
 .play-level {
-  display: flex;
   justify-content: center;
 }
 
