@@ -1,7 +1,7 @@
 
 # <h1>Odd One Out/h1>
 
-![Mockup Screen Image](doc/screens.png)
+![Mockup Screen Image](doc/img/screens.png)
 
 <br>
 <hr>
