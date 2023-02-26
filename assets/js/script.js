@@ -1,4 +1,4 @@
-//* initialize and set up game letiables
+//* initialize and set up game variables
 let  oddOne = ""; //* holds the odd one out array entry
 let currPuzz = 0; //*counter to check which puzzle from the puzzles array is currently active
 let scorePoint = 0;
@@ -6,8 +6,8 @@ let puzzle = "";
 let userName = "";
 let currentId = ""; //* id of the currently selected button
 let gameRound = 1; //* set initial value for round
-let winSound ; //* audio file variabble
-let myIcon ; //* button id variabble
+let winSound ; //* audio file variable
+let myIcon ; //* button id variable
 let scoreFlag ;
 let pageTitle ;
 let quizPlay = document.querySelector(".username-input");
@@ -22,9 +22,7 @@ let playArea = document.querySelector(".game-area");
 let scoreArea = document.querySelector(".score-area");
 let hardNess = document.querySelector(".play-level");
 
-let alpha, animals, clouds, danger, devices, faces, foods, homes, motor, tools ;
-
-//* array to hold arrays of icons for of all ten puzzles
+//* main array to hold arrays of icons for of all ten puzzles
 const puzzles = [
 	(alpha = ["fas fa-a", "fas fa-i", "fas fa-u", "fas fa-z"]),
 	(animals = ["fas fa-cat", "fas fa-dog", "fas fa-horse", "fas fa-fish"]),
@@ -37,21 +35,22 @@ const puzzles = [
 	(motor = ["fas fa-car-side", "fas fa-truck", "fas fa-truck-pickup", "fas fa-motorcycle"]),
 	(tools = ["fas fa-hammer", "fas fa-wrench", "fas fa-trowel", "fas fa-pencil"])
 ];
+let alpha, animals, clouds, danger, devices, faces, foods, homes, motor, tools ;
 const altpuzzles = []; //* temporary puzzles array
 const altpuzzle = []; //* temporary puzzle
 
-//* progress bar and timer letiables
+//* progress bar and timer variables
 let countdown, sec;
 let toggle = true;
 let progBar = document.getElementById("my-prog-bar");
 let width = 0.0;
-let progtime = 0.0; //* progress bar increment letiable
+let progtime = 0.0; //* progress bar increment variable
 let roundtime ; //* set initial time to allow for 10 rounds of play
 
 getUname();
 
+//* get the username from the player and wait for enter to be pressed
 function getUname() {
-  //* get the username from the player and wait for enter
   document
     .querySelector("#uname-in")
     .addEventListener("keydown", function (event) {
@@ -59,7 +58,6 @@ function getUname() {
         respondUser();
       }
     });
-
   //* hide game play area section while username input is in progress
   playArea.style.display = "none";
   scoreArea.style.display = "none";
@@ -70,10 +68,10 @@ function getUname() {
     "Type your username below then press enter.";
 }
 
+//* username input validation and response section
 function respondUser() {
   //* feedback for username input section
   userName = document.getElementById("uname-in").value;
-
   if (userName.trim() == "") {
     //* warn player that they have not entered a username
     response.textContent = `You have to type in a username to play !`;
@@ -100,6 +98,7 @@ levelButtons.forEach((button) =>
   button.addEventListener("click", levelButtonHandler)
 );
 
+//* game level selection 
 function levelButtonHandler(event) {
   if (event.currentTarget.id === "easy") {
     roundtime = 200;
@@ -113,18 +112,20 @@ function levelButtonHandler(event) {
   quizPlay.addEventListener("click", clearUserInp);
 }
 
+//* hide the username input section
 function clearUserInp() {
   quizPlay.style.display = "none";
   revealGameArea();
 }
 
+//* reveal the game area after user input section
 function revealGameArea() {
-  //* reveal the game area after user input section
   playArea.style.display = "flex";
   scoreArea.style.display = "flex";
   setPuzzOne();
 }
 
+//* handlers for button click events section
 gameButtons.forEach((
   button //* listen for mouse clicks in the main game area
 ) => button.addEventListener("click", buttonClickHandler));
@@ -135,8 +136,8 @@ function buttonClickHandler(event) {
   refreshTimer(clickedButtonText); //* set the level timer
 }
 
+//* randomize the order of the puzzles and load the first puzzle array
 function setPuzzOne() {
-  //* randomize the order of the puzzles and load the first puzzle array
   altpuzzles.push(...puzzles); //* clone the puzzles array to preserve original
   altpuzzles.sort(() => Math.random() - 0.5); //* randomize puzzles
   puzzle = altpuzzles[currPuzz];
@@ -148,11 +149,11 @@ function setPuzzOne() {
   newPuzz(); //* function to render puzzle icons
 }
 
+//* set up and display the icons for the current puzzle
 function newPuzz() {
-  //* render the icons for the current puzzle
   for (let btn = 0; btn < 4; ++btn) {
     //* load an icon into each button from the puzzle array
-    currentId = "b-".concat(btn + 1); //* load letiable with the current button id
+    currentId = "b-".concat(btn + 1); //* load variable with the current button id
     myIcon = document.getElementById(currentId); //* get the button information of the current id
     myIcon.setAttribute("class", `${altpuzzle[btn]} fa-5x`); //* assign the icon from the current puzzle array location to the button
     myIcon.style.width = "120px"; //* make sure icons are always the same width
@@ -170,9 +171,8 @@ function newPuzz() {
   altpuzzle.length = 0; //* reinitialize current array for the next puzzle
 }
 
+//*play the currently presented puzzle section
 function playPuzz(currentId) {
-  //*play the currently presented puzzle
-
   scoreFlag = parseInt(
     document.getElementById(currentId).getAttribute("odd-flag")
   ); //* get the flag value of the clicked button (0 or 1)
@@ -183,29 +183,29 @@ function playPuzz(currentId) {
   }
   puzzle = altpuzzles[currPuzz]; //* set the puzzle to the current puzzle array value while preserving original
   altpuzzle.push(...puzzle);
-  oddOne = altpuzzle[3]; //* copy the last entry of the current puzzle array which is the odd one out into a letiable
+  oddOne = altpuzzle[3]; //* copy the last entry of the current puzzle array which is the odd one out into a variable
   altpuzzle.sort(() => Math.random() - 0.5); //* randomize the order of the buttons so that the odd one isn't always in the same location
   newPuzz(); //* call the function that renders the puzzle array buttons
 
   ++currPuzz; //* increment the puzzle count so that the next puzzle loads after score calculation
 }
 
-function scoreCalc() {
+//* section to calculate the score and display on screen
+function scoreCalc() { 
   if (scoreFlag === 1) {
     document.getElementById("scorebox").innerText = ++scorePoint;
   } else {
     //* if the odd one out is not seletect decrement the score
     document.getElementById("scorebox").innerText = --scorePoint;
   }
-
-  if (currPuzz >= 10 && scorePoint < 10) {
+  if (currPuzz >= 10 && scorePoint < 10) { //* fail to get 10 out of 10
     clearInterval(countdown);
     document.getElementById("round-score").style.display = "none";
     resultContainer.innerHTML = `Hard luck ${userName}. <br/> Try again !`;
     winSound = new playSound("assets/snd/foghorn.mp3");
     winSound.play();
     setTimeout(reStart, 5000);
-  } else if (currPuzz >= 10 && scorePoint >= 10) {
+  } else if (currPuzz >= 10 && scorePoint >= 10) { //* made it to next round
     gameRound++;
     roundtime = roundtime - 10; //* reduce round timer by 10 seconds
     clearInterval(countdown);
@@ -216,12 +216,13 @@ function scoreCalc() {
     winSound.play();
     setTimeout(nextRound, 3000); //* wait 5 seconds to enjoy win before next round
   }
-  if (gameRound >= 11) {
+  if (gameRound >= 11) { //* completed all 10 rounds successfully
     clearInterval(countdown);
     wonGame();
   }
 }
 
+//* play the next round
 function nextRound() {
   currPuzz = scorePoint = 0; //* reset the puzzle count to 0
   document.getElementById(
@@ -233,7 +234,8 @@ function nextRound() {
   setPuzzOne(); //* call the first puzzle function
 }
 
-function playSound(src) {
+//* sound file playing section
+function playSound(src) { 
   this.sound = document.createElement("audio");
   this.sound.src = src;
   this.sound.setAttribute("preload", "auto");
@@ -248,8 +250,8 @@ function playSound(src) {
   };
 }
 
+//* start the countdown progress bar
 function refreshTimer(buttonText) {
-  //* start the countdown progress bar
   switch (toggle) {
     case true:
       startTimer();
@@ -261,6 +263,7 @@ function refreshTimer(buttonText) {
   playPuzz(buttonText);
 }
 
+//* out of time function
 function stopGame() {
   //* game over alert
   resultContainer.innerHTML = `You ran out of time ${userName}.<br/> Try again !`;
@@ -271,7 +274,6 @@ function stopGame() {
 }
 
 //* progress timer code functions
-
 function startTimer(progTime) {
   sec = roundtime;
   progtime = 100 / sec;
@@ -292,12 +294,12 @@ function currentTime() {
     clearInterval(countdown);
     stopGame();
   }
-  sec--; //* the sec letiable holds the quiz timer value and alerts if less than 0
-
+  sec--; //* the sec variable holds the quiz timer value and alerts if less than 0
   width = width + progtime; //* match progress percentage reminaing seconds (100/sec)
   progBar.style.width = width + "%"; //* draws the progress bar on the page
 }
 
+//* game over and game restart section
 function reStart() {
   //* this loads the entire game from scratch
   location.reload();
