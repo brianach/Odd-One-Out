@@ -26,6 +26,7 @@ h1 {
 }
 
 .play-level .lev-button {
+  font-size: xx-large;
   border: none;
   background-color: white;
 }
