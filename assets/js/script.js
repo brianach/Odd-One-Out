@@ -263,7 +263,7 @@ function refreshTimer(buttonText) {
 
 function stopGame() {
   //* game over alert
-  resultContainer.innerText = `You ran out of time ${userName}.<br/> Try again !`;
+  resultContainer.innerHTML = `You ran out of time ${userName}.<br/> Try again !`;
   document.getElementById("round-score").innerHTML = "";
   winSound = new playSound("assets/snd/foghorn.mp3");
   winSound.play();

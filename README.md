@@ -14,8 +14,7 @@
 
 - [Odd One Out](#Odd One Out)
 - [Introduction](#introduction)
-  + [Who am I?](#who-am-i)
-  + [Why the Plassy?](#why-the-plassy)
+  + 
 - [Goals](#goals)
   + [Personal Goals](#personal-goals)
   + [Visitor Goals](#visitor-goals)
@@ -39,13 +38,7 @@
 
 ## <h1>Introduction</h1><br>
 
-### <h2>Who am I?</h2><br>
-
-My name is Brían ó Cualáin and I am a native of Inisheer which is the smallest of the Aran Islands archipelago off the west coast of Ireland although I have been living in Ireland for the last 30 years. ( We islanders refer to the mainland as Ireland in the same way someone might refer to it as another country which culturally and linguistically if not indeed physically it almost certainly is. 😉) Inisheer's population has remained around the 300 mark since I grew up there and it continues to be an ever more popular tourist destination endowned as it is by both natural and manmade beauty and due to its location beside the world renowned Cliffs of Moher, Doolin, Lahinch and the Aran Islands themselves.
-
-### <h2>Why the Plassy?</h2><br>
-
-My father Máirtín ó Cualáin (Martin Folan) was a member of the onshore rescue unit and took part in the rescue of the Plassy crew. I myself have been fascinated with the Plassy since I was a child. It was a favouite spot in which to play hide and seek or just to explore from the time I first managed to climb up into it, itself a rite of passage of sorts when growing up on Inisheer. One of my scariest and proudest moments was walking accross the 4m iron girder in the engine room in order to climb down there to explore the dark recesses of the ship. The girder was barely 10cm wide and there was a drop of about 4m to the engine room floor which was strewn with debris and rusting metal, hence the mix of fear and pride. Of course it goes without saying that I wouldn't encourage anyone to do such a thing today and in fact it is even more dangerous than ever now given the state of corrosion of the plassy and the advanced structural damage caused over time by the incessant pounding of Atlantic storms.
+This is a neat little game based on old fasioned quiz book type puzzles.
 
 <br><hr><br>
 
@@ -55,13 +48,8 @@ My father Máirtín ó Cualáin (Martin Folan) was a member of the onshore rescu
 
 <br>
 
-- Record knowledge of the subject
-- Add to knowledge of the subject
-- Learn to create attractive web pages
-- Build a portfolio of webpages
-- Gain employment or create a solo web development business
-
-Its my intention to add further to the Plassy in terms of information and enhancement and to broaden its scope to related maritime and historical topics. Future enhancement may also include relevant accomodation and travel information for the visitor. 
+Create a game that challenges and entertains the player.
+I added a progress par to add an element of excitement.
 
 <br>
 
@@ -69,23 +57,18 @@ Its my intention to add further to the Plassy in terms of information and enhanc
 
 <br>
 
- - Learn about the Plassy
- - Learn about shipbuilding
- - Discover its fascinating history
- - Appreciate the human aspect
- - Add visiting the Plassy to bucket list
+Test logic and hand eye coordination skills in a fun way.
 
 <br><hr><br>
 
 ## <h1>Design and Planning</h1><br>
 
-The website is designed inspire curiousity, nostalgia and adventure. It has three main pages and a central history page that takes the visitor into a more engaging experience with the subject by using additional pages containing more information in realtion to the specific timepoints in the chronology.
-
+I drew a rough sketch on paper first with some notes to explain how the game works. It was my intention to design all the icons by hand but I decided to utilize font awesome icons instead as they were simple and clear, suited the game itself, and saved an enormous amout of time which would have benn spent designing an creating the icons from scratch. Having said that, a future enhancement would utilize hand made icons and also various quizzes testing user knowledge on everything from art to sport using the same odd one out format. So one example might be to choose which is the odd one from a choice of modern, surrealist, abstract-expressionst and renaissance paintings. Or three Warhol's and onother similiar artwork etc.
 <br>
 
 ### <h2>Color</h2><br>
 
-I chose a sepia inspired color scheme but also one that is in harmony with the subject in terms of tone and feel. The colors and transparent text backgrounds are closely matched to the rust tones in the subject matter. I chose the second transparent color to improve contrast on the hero image cover text. 
+I chose a basic black and white scheme to fit in with the quiz book idea and a Boogaloo Google Font for its playful and 
 
 ![Color sampling](doc/design/cover-text-transparency.png)
 
