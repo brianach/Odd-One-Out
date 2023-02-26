@@ -143,7 +143,7 @@ Microsoft Edge, Safari, Google Chrome, Mozilla Firefox, Opera
 Empty heading errors. This is by design as the text will be entered programatically during game play.
 Four "Attribute odd-flag not allowed on element button at this point". This is also by design as the game needs to allocate a value to the attribute in order to determine which is the odd one out. 
 
-* [CSS Validator](https://validator.w3.org/) used to check for and correct errors. There are currently no errors in the code as currently submitted.
+* [CSS Validator](https://jigsaw.w3.org/css-validator/validator) used to check for and correct errors. There are currently no errors in the code as currently submitted.
 
 * [JSHint Validator](https://jshint.com/) used to check for and correct scripting errors. There are no errors in the final draft.
 
