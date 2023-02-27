@@ -3,6 +3,8 @@
 
 ![Mockup Screen Image](doc/img/screens.png)
 <br><br>
+[Odd One Out link to published game](https://brianach.github.io/Odd-One-Out/)
+<br><hr><br>
 
 ## <h1>Table of Contents</h1>
 
