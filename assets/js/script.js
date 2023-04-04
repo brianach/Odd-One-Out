@@ -166,9 +166,9 @@ function newPuzz() {
 
     if (oddOne === altpuzzle[btn]) {
       //  check if the currently selected button matches the odd one out
-      myIcon.setAttribute("odd-flag", 1); //  set the odd-flag attribute to 1 if the odd one out matches
+      myIcon.setAttribute("data-odd-flag", 1); //  set the data-odd-flag attribute to 1 if the odd one out matches
     } else {
-      myIcon.setAttribute("odd-flag", 0); //  if the wrong button is clicked then set the odd-flag to 0
+      myIcon.setAttribute("data-odd-flag", 0); //  if the wrong button is clicked then set the data-odd-flag to 0
     }
   }
   currentId = ""; //  reinitialize current button id for the next puzzle
@@ -178,7 +178,7 @@ function newPuzz() {
 // play the currently presented puzzle section
 function playPuzz(currentId) {
   scoreFlag = parseInt(
-    document.getElementById(currentId).getAttribute("odd-flag")
+    document.getElementById(currentId).getAttribute("data-odd-flag")
   ); //  get the flag value of the clicked button (0 or 1)
   scoreCalc(scoreFlag); //  send the result to the score calculation function
 
