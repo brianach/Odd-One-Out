@@ -53,7 +53,7 @@ getUname();
 /** I used a reworked version of the code from Sanda Bergstrom's TicTacToe project for the user input
  *  displayName function at line 36 https://sandrabergstrom.github.io/PP2/
  */
-//  get the username from the player and wait for enter to be pressed
+
 function getUname() {
   document
     .querySelector("#uname-in")
@@ -67,7 +67,7 @@ function getUname() {
   scoreArea.style.display = "none";
   hardNess.style.display = "none";
   diffLev.style.display = "none";
-  //  prompt for username
+
   document.getElementsByTagName("h3")[0].innerText =
     "Type your username below then press enter.";
 }
@@ -79,6 +79,16 @@ function respondUser() {
   if (userName.trim() == "") {
     //  warn player that they have not entered a username
     response.textContent = `You have to type in a username to play !`;
+    response.style.color = "red";
+    setTimeout(clearName, 3000);
+  } else if (userName.length > 15) {
+    //  warn player that the username doesn't conform to requirements
+    response.textContent = `Please use no more than 15 letters and/or numbers.`;
+    response.style.color = "red";
+    setTimeout(clearName, 3000);
+  } else if (!/^[a-zA-Z0-9]+$/.test(userName)) {
+    // warn player that the username contains invalid characters
+    response.textContent = `Please use only letters and/or numbers.`;
     response.style.color = "red";
     setTimeout(clearName, 3000);
   } else {
